@@ -1,0 +1,29 @@
+-# in app/views/Listings/show.html.haml
+
+%h3 Details about #{@listing.name}
+
+%h4 Description:
+%p#description= @listing.description
+
+%ul#details
+  %li
+    Location:
+    = @listing.location
+  %li
+    Purchase Date:
+    = @listing.purchase_date.strftime("%B %d, %Y")
+  %li
+    - if @listing.elevator_building
+      = "Building has elevator"
+    - else
+      = "No elevator in building"
+  %li
+    - if @listing.pickup_only
+      = "Buyer pick-up only"
+    - else
+      = "Can deliver"
+
+
+= link_to 'Edit', edit_listing_path(@listing), :class => 'btn btn-primary'
+= link_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+= link_to 'Back to listing list', listings_path, :class => 'btn btn-primary'

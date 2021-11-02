@@ -1,0 +1,19 @@
+-#  This file is app/views/Listings/index.html.haml
+%h2 All Listings
+
+%table#listings.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th{:class => @name_header_css}= link_to 'Name', listings_path(:sort => 'name'), :id => 'name_header'
+      %th Location
+      %th{:class => @date_header_css}= link_to 'Purchase Date', listings_path(:sort => 'purchase_date'), :id => 'purchase_date_header'
+      %th More Info
+  %tbody
+    - @listings.each do |listing|
+      %tr
+        %td= listing.name
+        %td= listing.location
+        %td= listing.purchase_date
+        %td= link_to "More about #{listing.name}", listing_path(listing)
+
+= link_to 'Add new listing', new_listing_path

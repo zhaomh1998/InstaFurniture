@@ -1,0 +1,21 @@
+%h2 Edit Existing Listing
+
+= form_tag listing_path(@listing), :method => :put do
+
+  = label :listing, :name, 'Name'
+  = text_field :listing, 'name'
+  %br
+
+  = label :listing, :elevator_building, 'Building has elevator'
+  = check_box :listing, :elevator_building
+  %br
+
+  = label :listing, :pickup_only, 'Buyer must pick up'
+  = check_box :listing, :elevator_building
+  %br
+
+  = label :listing, :purchase_date, 'Purchased On'
+  = date_select :listing, :purchase_date
+  %br
+
+  = submit_tag 'Update Listing Info', :class => 'btn btn-primary'
