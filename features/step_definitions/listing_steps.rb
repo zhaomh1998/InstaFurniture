@@ -1,15 +1,15 @@
-# Add a declarative step here for populating the DB with movies.
+# Add a declarative step here for populating the DB with Listings.
 
-Given /the following movies exist/ do |movies_table|
-  movies_table.hashes.each do |movie|
+Given /the following listings exist/ do |listings_table|
+  listings_table.hashes.each do |listing|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    Movie.create!(movie)
+    # you should arrange to add that listing to the database here.
+    Listing.create!(listing)
   end
 end
 
-Then /(.*) seed movies should exist/ do | n_seeds |
-  expect(Movie.count).to eq n_seeds.to_i
+Then /(.*) seed listings should exist/ do | n_seeds |
+  expect(Listing.count).to eq n_seeds.to_i
 end
 
 # Make sure that one string (regexp) occurs before or after another one
@@ -25,23 +25,23 @@ end
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
-When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
+When /I (un)?check the following tags: (.*)/ do |uncheck, tag_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  ratings = rating_list.split(',')
-  ratings.each do |rating|
-    rating_field = "ratings_#{rating.lstrip}"
+  ratings = tag_list.split(',')
+  ratings.each do |tag|
+    tag_field = "tags_#{tag.lstrip}"
     if uncheck
-      step "I uncheck \"#{rating_field}\""
+      step "I uncheck \"#{tag_field}\""
     else
-      step "I check \"#{rating_field}\""
+      step "I check \"#{tag_field}\""
     end
   end
 end
 
-Then /I should see all the movies/ do
-  # Make sure that all the movies in the app are visible in the table
+Then /I should see all the listings/ do
+  # Make sure that all the Listings in the app are visible in the table
   # https://stackoverflow.com/questions/2986250/how-to-assert-on-number-of-html-table-rows-in-ruby-using-capybara-cucumber
-  page.all('table#movies tr').count.should be Movie.count+1
+  page.all('table#listings tr').count.should be Listing.count+1
 end
