@@ -6,18 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-movies = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
-    	  {:title => 'The Terminator', :rating => 'R', :release_date => '26-Oct-1984'},
-    	  {:title => 'When Harry Met Sally', :rating => 'R', :release_date => '21-Jul-1989'},
-      	  {:title => 'The Help', :rating => 'PG-13', :release_date => '10-Aug-2011'},
-      	  {:title => 'Chocolat', :rating => 'PG-13', :release_date => '5-Jan-2001'},
-      	  {:title => 'Amelie', :rating => 'R', :release_date => '25-Apr-2001'},
-      	  {:title => '2001: A Space Odyssey', :rating => 'G', :release_date => '6-Apr-1968'},
-      	  {:title => 'The Incredibles', :rating => 'PG', :release_date => '5-Nov-2004'},
-      	  {:title => 'Raiders of the Lost Ark', :rating => 'PG', :release_date => '12-Jun-1981'},
-      	  {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
-  	 ]
+listings = [
+  { :name => 'Mission Oak II Queen Bookcase Storage Bed',
+    :description => 'In decent condition, one slat broken. Very heavy and sturdy bed with storage. Must come pick up!
+Will need to partially disassemble to remove from room. Just way too big to fit in my new room. Originally $800.',
+    :location => '96th & Broadway',
+    :purchase_date => '10-Oct-2019',
+    :elevator_building => true,
+    :pickup_only => true
+  },
+  {
+    :name => 'Electric Kettle, Brentwood',
+    :description => 'Brentwood electric kettle, good condition. Speed boiling, auto shut-off, boil-protection. Original
+price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & Broadway.',
+    :location => '114th & Broadway',
+    :purchase_date => '5-Dec-2020',
+    :elevator_building => false,
+    :pickup_only => false
+  }
+]
 
-movies.each do |movie|
-  Movie.create!(movie)
+listings.each do |listing|
+  Listing.create!(listing)
 end
