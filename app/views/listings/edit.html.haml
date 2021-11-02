@@ -3,7 +3,11 @@
 = form_tag listing_path(@listing), :method => :put do
 
   = label :listing, :name, 'Name'
-  = text_field :listing, 'name'
+  = text_field :listing, :name
+  %br
+
+  = label :listing, :description, 'Description'
+  = text_field :listing, :description
   %br
 
   = label :listing, :elevator_building, 'Building has elevator'
@@ -11,7 +15,7 @@
   %br
 
   = label :listing, :pickup_only, 'Buyer must pick up'
-  = check_box :listing, :elevator_building
+  = check_box :listing, :pickup_only
   %br
 
   = label :listing, :purchase_date, 'Purchased On'

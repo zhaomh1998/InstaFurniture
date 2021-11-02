@@ -32,7 +32,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.create!(params[:listing])
+    @listing = Listing.create!(listing_params)
     flash[:notice] = "#{@listing.name} was successfully created."
     redirect_to listings_path
   end
@@ -43,7 +43,7 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find params[:id]
-    @listing.update_attributes!(params[:listing])
+    @listing.update_attributes!(listing_params)
     flash[:notice] = "#{@listing.name} was successfully updated."
     redirect_to listing_path(@listing)
   end
@@ -55,4 +55,9 @@ class ListingsController < ApplicationController
     redirect_to listings_path
   end
 
+  private
+  def listing_params
+    # https://api.rubyonrails.org/v6.1.4/classes/ActionController/StrongParameters.html
+    params.require(:listing).permit(:name, :description, :elevator_building, :pickup_only, :purchase_date)
+  end
 end
