@@ -14,13 +14,14 @@
 ActiveRecord::Schema.define(version: 20111119180638) do
 
   create_table "listings", force: :cascade do |t|
-      t.string   "title"
-      t.text     "description"
-      t.float    "price"
-      t.datetime "post_date"
-      t.string   "label"
-      t.datetime "created_at"
-      t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
+    t.text     "location"
+    t.datetime "purchase_date"
+    t.boolean  "elevator_building"
+    t.boolean  "pickup_only"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
