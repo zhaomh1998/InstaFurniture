@@ -1,19 +1,37 @@
 -#  This file is app/views/Listings/index.html.haml
-%h2 All Listings
+.container.h-100.py-4
+  .d-flex.justify-content-center.h-100
+    .search.shadow
+      %input.search_input{:name => "", :placeholder => "Search listings...", :type => "text"}/
+      %a.search_icon{:href => "#"}
+        %i.fa.fa-search
 
-%table#listings.table.table-striped.col-md-12
-  %thead
-    %tr
-      %th{:class => @name_header_css}= link_to 'Name', listings_path(:sort => 'name'), :id => 'name_header'
-      %th Location
-      %th{:class => @date_header_css}= link_to 'Purchase Date', listings_path(:sort => 'purchase_date'), :id => 'purchase_date_header'
-      %th More Info
-  %tbody
+.container
+  .row
     - @listings.each do |listing|
-      %tr
-        %td= listing.name
-        %td= listing.location
-        %td= listing.purchase_date
-        %td= link_to "More about #{listing.name}", listing_path(listing)
+      .col-lg-4.mb-3.d-flex.align-items-stretch
+        .card.shadow
+          %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
+          .card-body.d-flex.flex-column
+            %h5.card-title #{listing.name}
+            %p.card-text.mb-4 #{listing.description}
+            %a.btn.btn-primary.mt-auto.align-self-start{:href => listing_path(listing)} Details
 
-= link_to 'Add new listing', new_listing_path
+%br
+-#
+-# %table#listings.table.table-striped.col-md-12
+-#   %thead
+-#     %tr
+-#       %th{:class => @name_header_css}= link_to 'Name', listings_path(:sort => 'name'), :id => 'name_header'
+-#       %th Location
+-#       %th{:class => @date_header_css}= link_to 'Purchase Date', listings_path(:sort => 'purchase_date'), :id => 'purchase_date_header'
+-#       %th More Info
+-#   %tbody
+-#     - @listings.each do |listing|
+-#       %tr
+-#         %td= listing.name
+-#         %td= listing.location
+-#         %td= listing.purchase_date
+-#         %td= link_to "More about #{listing.name}", listing_path(listing)
+-#
+-# = link_to 'Add new listing', new_listing_path

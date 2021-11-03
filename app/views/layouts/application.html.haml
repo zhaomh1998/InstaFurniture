@@ -2,6 +2,7 @@
 %html
   %head
     %link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
+    %link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css")
     %title InstaFurniture
     = stylesheet_link_tag 'application', 'media' => 'all'
     = javascript_include_tag 'application'
@@ -9,8 +10,18 @@
 
     %body
       %div.container
-        %div.navar.navbar-expand-lg.bg-primary.text-white
-          %h1.title InstaFurniture
+        %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+          = image_tag("logo.svg", size: "150x50")
+          %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarNavAltMarkup.collapse.navbar-collapse
+            .navbar-nav
+              %a.nav-item.nav-link.active{:href => listings_path}
+                Listings
+                %span.sr-only (current)
+              %a.nav-item.nav-link{:href => "#"} Advanced Search
+              %a.nav-item.nav-link{:href => new_listing_path} Add Listing
+        -# = image_tag("logo.svg", size: "300x100")
         #main
           - if flash[:notice]
             %div.alert.alert-danger
