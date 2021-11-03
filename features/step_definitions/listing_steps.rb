@@ -39,7 +39,7 @@ When /I (un)?check the following tags: (.*)/ do |uncheck, tag_list|
   ratings = tag_list.split(',')
   ratings.each do |tag|
     # tag_field = "tags_#{tag.lstrip}"
-    tag_field = tag.lstrip
+    tag_field = "#{tag.lstrip}"
     if uncheck
       step "I uncheck \"#{tag_field}\""
     else
