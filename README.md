@@ -1,6 +1,6 @@
-# InstaFurniture
+## InstaFurniture
 
-# Name | UNI
+### Name | UNI
 ```
 Member 1 Name: Duo Chen
 Member 1 UNI:  dc3565
@@ -12,7 +12,7 @@ Member 4 Name: Yizhuo Wu
 Member 4 UNI:  yw3689
 ```
 
-## Setting up (Instructions to run and test the project)
+### Setting up (Instructions to run and test the project)
 ```bash
 bundle install
 rake db:migrate
@@ -34,12 +34,3 @@ Thus I want a platform that enables me to easily upload furniture item pictures,
 So that I can help find buyers who are interested in my used furniture and sell them, minimize the cost of disposing used furniture and protect the environment
 
 ```
-
-
-README with (1) the names and UNIs of all team members and (2) instructions to run and test your product.
-User stories written in Cucumber for the most basic features of your product.
-RSpec tests for the code written.
-Working SaaS prototype that passes the user stories and RSpec tests.
-Heroku deployment link.
-Code (Github repository link).
-Any additional materials you would like to submit.
