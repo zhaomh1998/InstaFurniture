@@ -1,6 +1,6 @@
 # Add a declarative step here for populating the DB with Listings.
 
-Given /the following listings exist/ do |listings_table|
+Given /the following furniture item exist/ do |listings_table|
   listings_table.hashes.each do |listing|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that listing to the database here.
@@ -8,7 +8,7 @@ Given /the following listings exist/ do |listings_table|
   end
 end
 
-Then /(.*) seed listings should exist/ do | n_seeds |
+Then /(.*) seed furniture should exist/ do | n_seeds |
   expect(Listing.count).to eq n_seeds.to_i
 end
 
