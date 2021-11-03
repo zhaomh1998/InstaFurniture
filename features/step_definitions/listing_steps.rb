@@ -1,12 +1,19 @@
 # Add a declarative step here for populating the DB with Listings.
 
-Given /the following furniture item exist/ do |listings_table|
+Given /the following furniture items exist/ do |listings_table|
   listings_table.hashes.each do |listing|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that listing to the database here.
     Listing.create!(listing)
   end
 end
+
+
+# new feature
+Then /(.*) furniture items should exist/ do | n_seeds |
+  expect(Listing.count).to eq n_seeds.to_i
+end
+
 
 Then /(.*) seed furniture should exist/ do | n_seeds |
   expect(Listing.count).to eq n_seeds.to_i
@@ -31,7 +38,8 @@ When /I (un)?check the following tags: (.*)/ do |uncheck, tag_list|
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
   ratings = tag_list.split(',')
   ratings.each do |tag|
-    tag_field = "tags_#{tag.lstrip}"
+    # tag_field = "tags_#{tag.lstrip}"
+    tag_field = tag.lstrip
     if uncheck
       step "I uncheck \"#{tag_field}\""
     else
