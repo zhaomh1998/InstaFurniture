@@ -24,6 +24,14 @@ price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & B
     :elevator_building => false,
     :pickup_only => false
   }
+{
+  :title => 'Levo Monitor',
+  :description => 'A used Levo monitor for sale.',
+  :location => '115th & Broadway',
+  :purchase_date => '5-Dec-2020',
+  :elevator_building => false,
+  :pickup_only => false
+}
 ]
 
 listings.each do |listing|

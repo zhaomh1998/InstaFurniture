@@ -17,11 +17,14 @@ ActiveRecord::Schema.define(version: 20111119180638) do
     t.string   "name"
     t.text     "description"
     t.text     "location"
+    t.float    "price"
+    t.datetime "post_date"
     t.datetime "purchase_date"
     t.boolean  "elevator_building"
     t.boolean  "pickup_only"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    #t.datetime "created_at"
+    #t.datetime "updated_at"
+    t.string   "label"
   end
 
 end

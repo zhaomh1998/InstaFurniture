@@ -7,7 +7,7 @@ Feature: display list of furniture sorted by different criteria
 Background: furniture have been added to database
 
   Given the following furniture item exist:
-  | title                   | price  | post_date    | label    |
+  | name         |description | location         | price  | post_date    | label    |
   | Levo Monitor            | 1500   | 25-Nov-1992  | monitor  |
   | Apple Monitor           | 2000   | 25-Nov-1992  | monitor  |
   | Memory Mattress         | 800    | 26-Oct-1984  | mattress |
@@ -15,7 +15,7 @@ Background: furniture have been added to database
   Then 3 seed furniture should exist
 
 Scenario: sort furniture alphabetically
-  When I follow "title"
+  When I follow "name"
   Then I should see "Apple Monitor"
   And I should see "Levo Monitor"
   And I should see "Memory Mattress "
