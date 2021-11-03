@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Movie do
+RSpec.describe Listing do
   describe "call with_director" do
     it "returns movies with the same director" do
       Movie.delete_all
