@@ -14,12 +14,12 @@ Background: furniture items have been added to database
   And  I am on the InstaFurniture home page
   Then 2 furniture items should exist
 
-"""
+
 Scenario: restrict to furniture items with elevator_building
   Given I check the following tags: elevator_building 
   When I press "Refresh"
   Then I should see "Mission Oak II Queen Bookcase Storage Bed"
   # enter step(s) to ensure that other furniture items are not visible
   And I should not see "Electric Kettle, Brentwood"
-"""
+
 
