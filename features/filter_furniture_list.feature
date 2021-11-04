@@ -22,4 +22,6 @@ Scenario: restrict to furniture items with elevator_building
   Then I should see "Mission Oak II Queen Bookcase Storage Bed"
   # enter step(s) to ensure that other furniture items are not visible
   Then I should see "Electric Kettle, Brentwood"
-
+  When I follow "Electric Kettle, Brentwood"
+  # Then I should see "Building has elevator"
+  # Then I should see "96th & Broadway"
