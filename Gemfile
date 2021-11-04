@@ -12,6 +12,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'sqlite3'    #gem to use in development-test environment
 end
 
 group :test do
@@ -34,4 +35,4 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'protected_attributes'
 
-gem 'sqlite3', '~> 1.3.0'
+# gem 'sqlite3', '~> 1.3.0'
