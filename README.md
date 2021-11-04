@@ -28,7 +28,7 @@ bundle exec rake cucumber
 [https://obscure-tundra-88655.herokuapp.com/](https://obscure-tundra-88655.herokuapp.com/ )
 
 ### GitHub Repo
-[https://github.com/zhaomh1998/InstaFurniture](https://github.com/zhaomh1998/InstaFurniture)
+[https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter1](https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter1)
 
 ### User stories
 As a student just arrive the campus,I have to go through the pain of moving in the new apartment, buying new furniture is expensive given that we only use them for one or two years, but for used ones, it’s difficult to find someone we trust on craigslist or facebook marketplace.
