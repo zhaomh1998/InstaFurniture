@@ -20,8 +20,20 @@ Scenario: restrict to furniture items with elevator_building
   When I am on the InstaFurniture home page
   # When I press "Refresh"
   Then I should see "Mission Oak II Queen Bookcase Storage Bed"
-  # enter step(s) to ensure that other furniture items are not visible
+  # Select a furniture item
   Then I should see "Electric Kettle, Brentwood"
-  When I follow "Electric Kettle, Brentwood"
-  # Then I should see "Building has elevator"
-  # Then I should see "96th & Broadway"
+  When I follow "More about Electric Kettle, Brentwood"
+  # Check the valid furniture names
+  Then I should see "Electric Kettle, Brentwood"
+  Then I should not see "Mission Oak II Queen Bookcase Storage Bed"
+  # Check valid boolean tags
+  Then I should see "No elevator in building"
+  Then I should see "Can deliver"
+  # Go back
+  When I follow "Back to listing list"
+  # Select another furniture
+  Then I follow "More about Mission Oak II Queen Bookcase Storage Bed"
+  # Check valid boolean tags
+  Then I should see "Building has elevator"
+  Then I should see "Buyer pick-up only"
+
