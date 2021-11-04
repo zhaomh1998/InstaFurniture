@@ -20,3 +20,15 @@ Scenario: have all attributes for creation
   And I should see "Building has elevator"
   And I should see "Buyer must pick up"
   And I should see "Purchased On"
+
+# Cucumber Scenarios which used for future iterations
+
+#Scenario: sort furniture alphabetically
+#  When I follow "name"
+#  Then I should see "Electric Kettle, Brentwood"
+#  And I should see "Mission Oak II Queen Bookcase Storage Bed"
+
+#Scenario: sort furniture in increasing order of price
+#  When I follow "price"
+#  Then I should see "Mission Oak II Queen Bookcase Storage Bed"
+#  And I should see "Electric Kettle, Brentwood "
