@@ -17,11 +17,11 @@ Member 4 UNI:  yw3689
 git clone git@github.com:zhaomh1998/InstaFurniture.git
 cd InstaFurniture
 bundle install
-bundle exec rake db:migrate
-bundle exec rake db:test:prepare
-bundle exec rake db:seed
-bundle exec rake rspec
-bundle exec rake cucumber
+rake db:migrate
+rake db:test:prepare
+rake db:seed
+rspec
+cucumber
 ```
 
 ### Heroku Demo Deployment
