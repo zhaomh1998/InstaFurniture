@@ -14,10 +14,17 @@ Member 4 UNI:  yw3689
 
 ### Setting up (Instructions to run and test the project)
 ```bash
-bundle install
-rake db:migrate
-rake db:test:prepare
-rake db:seed
+git clone git@github.com:zhaomh1998/InstaFurniture.git
+cd InstaFurniture
+rails generate cucumber:install capybara 
+rails generate cucumber_rails_training_wheels:install 
+rails generate rspec:install
+bundle install --without production
+bundle exec rake db:migrate
+bundle exec rake db:test:prepare
+bundle exec rake db:seed
+bundle exec rake rspec
+bundle exec rake cucumber
 ```
 
 ### User stories
