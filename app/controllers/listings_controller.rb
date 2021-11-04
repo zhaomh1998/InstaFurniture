@@ -7,24 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    sort = params[:sort] || session[:sort]
-    case sort
-    when 'name'
-      ordering, @name_header_css = { :name => :asc }, 'bg-warning hilite'
-    when 'purchase_date'
-      ordering, @date_header_css = { :purchase_date => :asc }, 'bg-warning hilite'
-    end
-
-    if params[:sort] != session[:sort]
-      session[:sort] = sort
-      redirect_to :sort => sort and return
-    end
-
-    if sort
-      @listings = Listing.all.order(ordering)
-    else
       @listings = Listing.all
-    end
   end
 
   def new

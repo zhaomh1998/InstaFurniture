@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-if RUBY_VERSION>='2.6.0'
+if RUBY_VERSION >= '2.6.0'
   if Rails.version < '5'
     class ActionController::TestResponse < ActionDispatch::TestResponse
       def recycle!
@@ -15,76 +15,71 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-
 RSpec.describe ListingsController, :type => :controller do
-  describe "GET the index page" do
-    it "renders the index page" do
+  describe "listings" do
+    it "shows listings on index page" do
       Listing.delete_all
-      listing1 = { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
-      listing2 = { :id => 2, :name => "listing2", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+      listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
+      listing2 = { :name => "listing2", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
       Listing.create(listing2)
       get :index
       expect(response).to render_template("listings/index")
     end
-  end
 
-  describe "GET the detail page for a listing" do
-    it "renders the show page" do
+    it "renders listing detail page" do
       Listing.delete_all
-      listing1 = { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+      listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
       get :show, :id => 1
       expect(response).to render_template("listings/show")
     end
   end
 
-  describe "GET the new page" do
-    it "renders the new page" do
+  describe "create new listings" do
+    it "renders new listing page" do
       get :new
       expect(response).to render_template("listings/new")
     end
+
+    it "submit listing" do
+      Listing.delete_all
+      post :create, :listing => { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
+      expect(response).to redirect_to listings_path
+      expect(flash[:notice]).to match(/listing1 was successfully created./)
+    end
   end
 
-  describe "GET the edit page" do
+  describe "edit existing listings" do
     it "renders the edit page" do
       Listing.delete_all
-      listing1 = { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+      listing1 = { :name => "listing1", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
       get :edit, :id => 1
       expect(response).to render_template("listings/edit")
     end
-  end
 
-  describe "POST a new listing" do
-    it "redirects to the index page" do
+    it "submit edits" do
       Listing.delete_all
-      post :create, :listing => { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "date" }
-      expect(response).to redirect_to listings_path
-    end
-  end
-
-  describe "PUT an existing listing" do
-    it "redirects to the show page" do
-      Listing.delete_all
-      listing1 = { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+      listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
       get :update, { :id => 1,
-                     :listing => { :name => "listing1_updated", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+                     :listing => { :name => "listing1_updated", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       }
       expect(response).to redirect_to listing_path(1)
+      expect(flash[:notice]).to match(/listing1_updated was successfully updated./)
     end
   end
 
-  describe "DELETE an existing listing" do
+  describe "delete existing listings" do
     it "redirects to the index page" do
       Listing.delete_all
-      listing1 = { :id => 1, :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "2017-07-20" }
+      listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
       delete :destroy, :id => 1
       expect(response).to redirect_to listings_path
+      expect(flash[:notice]).to match(/Listing 'listing1' deleted./)
     end
   end
-
 
 end
