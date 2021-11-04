@@ -1,29 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Listing do
-  describe "call with_director" do
-    it "returns movies with the same director" do
-      Movie.delete_all
-      movie1 = { :title => "movie with director 1", :rating => "R", :director => "director1" }
-      movie2 = { :title => "movie with director 2", :rating => "PG", :director => "director1" }
-      Movie.create(movie1)
-      Movie.create(movie2)
+  describe "call purchase_date" do
+    it "returns listings with the same purchase date" do
+      Listing.delete_all
+      listing1 = { :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "date1" }
+      listing2 = { :name => "listing2", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "date1" }
+      Listing.create(listing1)
+      Listing.create(listing2)
 
-      result = Movie.similar_movies("director1")
-      expect(result.find { |movie| movie[:title] == "movie with director 1" }).to_not be_nil
-      expect(result.find { |movie| movie[:title] == "movie with director 2" }).to_not be_nil
+      result = Listing.similar_listings("date1")
+      expect(result.find { |listing| listing[:name] == "listing1" }).to_not be_nil
+      expect(result.find { |listing| listing[:name] == "listing2" }).to_not be_nil
     end
 
-    it "doesn't return movies by different directors" do
-      Movie.delete_all
-      movie1 = { :title => "movie with director 1", :rating => "R", :director => "director1" }
-      movie2 = { :title => "movie with director 2", :rating => "PG", :director => "director2" }
-      Movie.create(movie1)
-      Movie.create(movie2)
+    it "doesn't return movies by different purchase dates" do
+      Listing.delete_all
+      listing1 = { :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "date1" }
+      listing2 = { :name => "listing1", :description => "none", :elevator_building => "yes", :pickup_only => "yes", :purchase_date => "date2" }
+      Listing.create(listing1)
+      Listing.create(listing2)
 
-      result = Movie.similar_movies("director1")
-      expect(result.find { |movie| movie[:title] == "movie with director 1" }).to_not be_nil
-      expect(result.find { |movie| movie[:title] == "movie with director 2" }).to be_nil
+      result = Listing.similar_listings("date1")
+      expect(result.find { |listing| listing[:name] == "listing1" }).to_not be_nil
+      expect(result.find { |listing| listing[:name] == "listing2" }).to be_nil
     end
   end
 end
