@@ -23,9 +23,12 @@
                 %a.nav-link{:href => listings_path} Listings
               %li.nav-item
                 %a.nav-link{:href => new_listing_path} Add Listing
-            %form.form-inline
-              %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-              %button.btn.btn-outline-light.my-2.my-sm-0{:type => "submit"} Search
+              %li.nav-item
+                %form.form-inline{:action => listings_path}
+                  = form_tag listings_path, :method => :post do
+                    = text_field_tag "query", "", class: "form-control mr-sm-2", id: "search-box"
+                    = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "search-button" do
+                      %i.fa.fa-search
         #main
           - if flash[:notice]
             %div.alert.alert-danger
