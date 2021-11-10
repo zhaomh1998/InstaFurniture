@@ -16,12 +16,13 @@ Member 4 UNI:  yw3689
 ```bash
 git clone git@github.com:zhaomh1998/InstaFurniture.git
 cd InstaFurniture
+# Note: on MacOS, do `brew install postgresql` first to resolve pg installation failure
 bundle install
 bundle exec rake db:migrate
 bundle exec rake db:test:prepare
 bundle exec rake db:seed
-bundle exec rake rspec
-bundle exec rake cucumber
+bundle exec rspec
+bundle exec cucumber
 ```
 
 ### Heroku Demo Deployment
