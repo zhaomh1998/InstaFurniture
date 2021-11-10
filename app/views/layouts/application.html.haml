@@ -1,6 +1,8 @@
 !!! 5
 %html
   %head
+    %script{:src => "https://code.jquery.com/jquery-2.1.3.min.js"}
+    %script{:src => "http://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"}
     %link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous")
     %link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css")
     %title InstaFurniture
@@ -9,19 +11,21 @@
     = csrf_meta_tags
 
     %body
-      %div.container
-        %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-          = image_tag("logo.svg", size: "150x50")
-          %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
+      %div.container-fullwidth
+        %nav.navbar.navbar-expand-lg.navbar-dark.bg-logo.mb-3
+          %a.navbar-brand{:href => listings_path}
+            = image_tag("logo.svg", size: "150x50")
+          %button.navbar-toggler.collapsed{"aria-controls" => "navbarColor02", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarColor02", "data-toggle" => "collapse", :type => "button"}
             %span.navbar-toggler-icon
-          #navbarNavAltMarkup.collapse.navbar-collapse
-            .navbar-nav
-              %a.nav-item.nav-link.active{:href => listings_path}
-                Listings
-                %span.sr-only (current)
-              %a.nav-item.nav-link{:href => "#"} Advanced Search
-              %a.nav-item.nav-link{:href => new_listing_path} Add Listing
-        -# = image_tag("logo.svg", size: "300x100")
+          #navbarColor02.navbar-collapse.collapse{:style => ""}
+            %ul.navbar-nav.mr-auto
+              %li.nav-item.active
+                %a.nav-link{:href => listings_path} Listings
+              %li.nav-item
+                %a.nav-link{:href => new_listing_path} Add Listing
+            %form.form-inline
+              %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+              %button.btn.btn-outline-light.my-2.my-sm-0{:type => "submit"} Search
         #main
           - if flash[:notice]
             %div.alert.alert-danger
