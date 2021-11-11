@@ -7,17 +7,32 @@ class ListingsController < ApplicationController
   end
 
   def index
-    # Searching
+    @listings = Listing.all
+
+    # Preference pickup / deliver
+    unless params.has_key?('filter_pick_up') && params.has_key?('filter_deliver')
+      if params.has_key?('filter_pick_up') # Pick up only
+        @listings = @listings.where(pickup_only: true)
+      elsif params.has_key?('filter_deliver')
+        @listings = @listings.where.not(pickup_only: true)
+      end
+    end
+
+    # Elevator building
+    if params.has_key?('filter_elevator')
+      @listings = @listings.where(elevator_building: true)
+    end
+
+    # Search keyword
     if params.has_key?('query') && !params[:query].blank?
       input = params[:query]
       search_words = input.split(' ')
-      @listings = []
+      result = []
 
       search_words.each do |word|
-        @listings.concat(Listing.where("name LIKE ?", "%#{word}%").to_a)
+        result.concat(@listings.where("name LIKE ?", "%#{word}%").to_a)
       end
-    else
-      @listings = Listing.all
+      @listings = result
     end
 
     @no_results = @listings.empty?

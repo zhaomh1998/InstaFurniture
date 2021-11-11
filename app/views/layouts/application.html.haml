@@ -23,10 +23,17 @@
                 %a.nav-link{:href => listings_path} Listings
               %li.nav-item
                 %a.nav-link{:href => new_listing_path} Add Listing
+            %ul.navbar-nav
               %li.nav-item
                 %form.form-inline{:action => listings_path}
                   = form_tag listings_path, :method => :post do
                     = text_field_tag "query", "", class: "form-control mr-sm-2", id: "search-box"
+                    %label.form-control.mr-sm-2
+                      %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1", :checked => "checked"} Pick-up
+                    %label.form-control.mr-sm-2
+                      %input.mr-1{:name => "filter_deliver", :type => "checkbox", :value => "1", :checked => "checked"} Deliver
+                    %label.form-control.mr-sm-2
+                      %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1"} Elevator Building
                     = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "search-button" do
                       %i.fa.fa-search
         #main
