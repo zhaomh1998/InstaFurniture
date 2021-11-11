@@ -1,38 +1,19 @@
 -#  This file is app/views/Listings/index.html.haml
--#.container.h-100.py-4
--#  .d-flex.justify-content-center.h-100
--#    .search.shadow
--#      %input.search_input{:name => "", :placeholder => "Search listings...", :type => "text"}/
--#      %a.search_icon{:href => "#"}
--#        %i.fa.fa-search
-
-.container
-  .row
-    - @listings.each do |listing|
-
-      .col-lg-4.mb-3.d-flex.align-items-stretch
-        .card.shadow
-          %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
-          .card-body.d-flex.flex-column
-            %h5.card-title #{listing.name}
-            %p.card-text.mb-4 #{listing.description}
-            %a.btn.btn-primary.mt-auto.align-self-start{:href => listing_path(listing)} More about #{listing.name}
-
-%br
--#
--# %table#listings.table.table-striped.col-md-12
--#   %thead
--#     %tr
--#       %th{:class => @name_header_css}= link_to 'Name', listings_path(:sort => 'name'), :id => 'name_header'
--#       %th Location
--#       %th{:class => @date_header_css}= link_to 'Purchase Date', listings_path(:sort => 'purchase_date'), :id => 'purchase_date_header'
--#       %th More Info
--#   %tbody
--#     - @listings.each do |listing|
--#       %tr
--#         %td= listing.name
--#         %td= listing.location
--#         %td= listing.purchase_date
--#         %td= link_to "More about #{listing.name}", listing_path(listing)
--#
--# = link_to 'Add new listing', new_listing_path
+- if @no_results
+  .d-flex.justify-content-center.align-items-center
+    .col-auto
+      %svg{:height => "100", :space => "preserve", :width => "100", :xmlns => "http://www.w3.org/2000/svg"}
+        %path{:d => "M36.087 51.265c-4.84 0-4.84-7.506 0-7.506 4.84.001 4.84 7.506 0 7.506zm27.835-7.505c-4.84 0-4.84 7.506 0 7.506s4.84-7.506 0-7.506zM94.253 50c-.492 23.704-19.78 44.756-44.248 44.248C26.3 93.756 5.249 74.468 5.756 50c.492-23.705 19.78-44.756 44.249-44.248C74.473 6.26 93.745 25.531 94.253 50zm-6.322 0c-.422-20.343-16.928-38.363-37.927-37.927C29.662 12.495 11.642 29.001 12.078 50c.422 20.343 16.928 38.363 37.927 37.927C71.003 87.491 87.496 70.999 87.931 50zM50.005 60.754c-5.137-.277-8.946 4.072-9.625 8.776a3.248 3.248 0 0 0-.094.943c-.018.342.023.644.09.928.666 5.001 4.454 8.512 9.629 8.791 5.479.295 9.447-4.672 9.719-9.719.295-5.479-4.673-9.448-9.719-9.719z"}
+    .col-auto
+      %h2 Too bad! No furniture for you :(
+- else
+  .container
+    .row
+      - @listings.each do |listing|
+        .col-lg-4.mb-3.d-flex.align-items-stretch
+          .card.shadow
+            %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
+            .card-body.d-flex.flex-column
+              %h5.card-title #{listing.name}
+              %p.card-text.mb-4 #{listing.description}
+              %a.btn.btn-primary.mt-auto.align-self-start{:href => listing_path(listing)} More about #{listing.name}

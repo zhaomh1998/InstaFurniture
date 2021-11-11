@@ -7,7 +7,21 @@ class ListingsController < ApplicationController
   end
 
   def index
+    # Searching
+    if params.has_key?('query') && !params[:query].blank?
+      input = params[:query]
+      search_words = input.split(' ')
+      @listings = []
+
+      search_words.each do |word|
+        @listings.concat(Listing.where("name LIKE ?", "%#{word}%").to_a)
+      end
+    else
       @listings = Listing.all
+    end
+
+    @no_results = @listings.empty?
+
   end
 
   def new
@@ -39,6 +53,7 @@ class ListingsController < ApplicationController
   end
 
   private
+
   def listing_params
     # https://api.rubyonrails.org/v6.1.4/classes/ActionController/StrongParameters.html
     params.require(:listing).permit(:name, :description, :elevator_building, :pickup_only, :purchase_date)
