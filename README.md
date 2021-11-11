@@ -25,6 +25,17 @@ bundle exec rspec
 bundle exec cucumber
 ```
 
+#### API Keys
+- Obtain API key from [mapquest](https://developer.mapquest.com/)
+- In the root directory, create a file named `.env` with following content
+```
+MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+For heroku deployment, use the following command to set the environment variable
+```bash
+heroku config:set MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
 ### Heroku Demo Deployment
 [https://obscure-tundra-88655.herokuapp.com/](https://obscure-tundra-88655.herokuapp.com/ )
 
