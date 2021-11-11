@@ -1,65 +1,90 @@
--#  This file is app/views/Listings/index.html.haml
-- if @no_results
-  .d-flex.justify-content-center.align-items-center
-    .col-auto
-      %svg{:height => "100", :space => "preserve", :width => "100", :xmlns => "http://www.w3.org/2000/svg"}
-        %path{:d => "M36.087 51.265c-4.84 0-4.84-7.506 0-7.506 4.84.001 4.84 7.506 0 7.506zm27.835-7.505c-4.84 0-4.84 7.506 0 7.506s4.84-7.506 0-7.506zM94.253 50c-.492 23.704-19.78 44.756-44.248 44.248C26.3 93.756 5.249 74.468 5.756 50c.492-23.705 19.78-44.756 44.249-44.248C74.473 6.26 93.745 25.531 94.253 50zm-6.322 0c-.422-20.343-16.928-38.363-37.927-37.927C29.662 12.495 11.642 29.001 12.078 50c.422 20.343 16.928 38.363 37.927 37.927C71.003 87.491 87.496 70.999 87.931 50zM50.005 60.754c-5.137-.277-8.946 4.072-9.625 8.776a3.248 3.248 0 0 0-.094.943c-.018.342.023.644.09.928.666 5.001 4.454 8.512 9.629 8.791 5.479.295 9.447-4.672 9.719-9.719.295-5.479-4.673-9.448-9.719-9.719z"}
-    .col-auto
-      %h2 Too bad! No furniture for you :(
-- else
-  .container
-    .row
-      - @listings.each do |listing|
-        .col-lg-4.mb-3.d-flex.align-items-stretch
-          .card.shadow
-            %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
-            .card-body.d-flex.flex-column
-              %h5.card-title #{listing.name}
-              %p.card-text.mb-4 #{listing.description}
-              %a.btn.btn-primary.mt-auto.align-self-start{:href => listing_path(listing)} More about #{listing.name}
-
 !!!
 %html
   %head
     %script{:src => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"}
     %link{:href => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css", :rel => "stylesheet", :type => "text/css"}/
-    :javascript
-      window.onload = function() {
-        L.mapquest.key = "#{ENV["MAPQUEST_APIKEY"]}";
+  %body
+    - if @no_results
+      .d-flex.justify-content-center.align-items-center
+        .col-auto
+          %svg{:height => "100", :space => "preserve", :width => "100", :xmlns => "http://www.w3.org/2000/svg"}
+            %path{:d => "M36.087 51.265c-4.84 0-4.84-7.506 0-7.506 4.84.001 4.84 7.506 0 7.506zm27.835-7.505c-4.84 0-4.84 7.506 0 7.506s4.84-7.506 0-7.506zM94.253 50c-.492 23.704-19.78 44.756-44.248 44.248C26.3 93.756 5.249 74.468 5.756 50c.492-23.705 19.78-44.756 44.249-44.248C74.473 6.26 93.745 25.531 94.253 50zm-6.322 0c-.422-20.343-16.928-38.363-37.927-37.927C29.662 12.495 11.642 29.001 12.078 50c.422 20.343 16.928 38.363 37.927 37.927C71.003 87.491 87.496 70.999 87.931 50zM50.005 60.754c-5.137-.277-8.946 4.072-9.625 8.776a3.248 3.248 0 0 0-.094.943c-.018.342.023.644.09.928.666 5.001 4.454 8.512 9.629 8.791 5.479.295 9.447-4.672 9.719-9.719.295-5.479-4.673-9.448-9.719-9.719z"}
+        .col-auto
+          %h2 Too bad! No furniture for you :(
+    - else
+      .row.m-4
+        .col-8
+          .container
+            .row
+              - @listings.each do |listing|
+                .col-lg-4.mb-3.d-flex.align-items-stretch
+                  .card.shadow{:id => "listing#{listing.id}"}
+                    %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
+                    .card-body.d-flex.flex-column
+                      %h5.card-title #{listing.name}
+                      -#%p.card-text.mb-4 #{listing.description}
+                      %a.btn.btn-primary.mt-auto.align-self-start{:href => listing_path(listing)} More about #{listing.name}
+        .col-4
+          #map{:style => "width: 100%; height: 530px;"}
+          :javascript
+            var items = #{raw @listings.to_json};
+            var ids = [];
+            var names = [];
+            var addresses = [];
+            items.forEach(function (item) {
+              ids.push(item['id']);
+              names.push(item['name']);
+              addresses.push(item['location']);
+            })
 
-        // Geocode three locations, then call the createMap callback
-        L.mapquest.geocoding().geocode(['435 West 119th Street New York', '550 West 120th Street New York'], createMap);
+            window.onload = function() {
+              // See README for where to obtain and set up this API key
+              L.mapquest.key = "#{ENV["MAPQUEST_APIKEY"]}";
 
-        function createMap(error, response) {
-          // Initialize the Map
-          var map = L.mapquest.map('map', {
-            layers: L.mapquest.tileLayer('map'),
-            center: [0, 0],
-            zoom: 12
-          });
+              // Geocode locations, then call the createMap callback
+              L.mapquest.geocoding().geocode(addresses, createMap);
 
-          // Generate the feature group containing markers from the geocoded locations
-          var featureGroup = generateMarkersFeatureGroup(response);
+              function createMap(error, response) {
+                // Initialize the Map
+                var map = L.mapquest.map('map', {
+                  layers: L.mapquest.tileLayer('map'),
+                  center: [0, 0],
+                  zoom: 12
+                });
 
-          // Add markers to the map and zoom to the features
-          featureGroup.addTo(map);
-          map.fitBounds(featureGroup.getBounds());
-        }
+                // Generate the feature group containing markers from the geocoded locations
+                var featureGroup = generateMarkersFeatureGroup(response);
 
-        function generateMarkersFeatureGroup(response) {
-          var group = [];
-          for (var i = 0; i < response.results.length; i++) {
-            var location = response.results[i].locations[0];
-            var locationLatLng = location.latLng;
+                // Add markers to the map and zoom to the features
+                featureGroup.addTo(map);
+                map.fitBounds(featureGroup.getBounds());
+              }
 
-            // Create a marker for each location
-            var marker = L.marker(locationLatLng, {icon: L.mapquest.icons.marker()})
-              .bindPopup(location.adminArea5 + ', ' + location.adminArea3);
+              function generateMarkersFeatureGroup(response) {
+                var group = [];
+                for (var i = 0; i < response.results.length; i++) {
+                  var location = response.results[i].locations[0];
+                  var locationLatLng = location.latLng;
+                  var associatedListingID = ids[i];
+                  // Create a marker for each location
+                  // var marker = L.marker(locationLatLng, {icon: L.mapquest.icons.marker()})
+                  //   .bindPopup(location.adminArea5 + ', ' + location.adminArea3);
+                  // https://stackoverflow.com/questions/50151688/marker-events-for-mapquest
+                  var marker = L.marker(locationLatLng, {icon: L.mapquest.icons.marker()})
+                    .bindPopup(`${ids[i]}: ${names[i]}`).on('click', function (e) {
+                      var info = e.target._popup._content;
+                      var clickedId = info.substring(0, info.indexOf(':'));
+                      // Highlight background
+                      ids.forEach(function (id) {
+                        if (document.getElementById(`listing${id}`).classList.contains('bg-warning') && id !== clickedId) {
+                          document.getElementById(`listing${id}`).classList.remove("bg-warning");
+                        }
+                      })
+                      document.getElementById(`listing${clickedId}`).classList.add("bg-warning");
+                      });
 
-            group.push(marker);
-          }
-          return L.featureGroup(group);
-        }
-      }
-  %body{:style => "border: 0; margin: 0;"}
-    #map{:style => "width: 100%; height: 530px;"}
+                  group.push(marker);
+                }
+                return L.featureGroup(group);
+              }
+            }
