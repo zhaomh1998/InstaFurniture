@@ -29,12 +29,12 @@
                   = form_tag listings_path, :method => :post do
                     = text_field_tag "query", "", class: "form-control mr-sm-2", id: "search-box"
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1", :checked => "checked"} Pick-up
+                      %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1", :checked => "checked", id: "checkbox_pick_up"} Pick-up
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_deliver", :type => "checkbox", :value => "1", :checked => "checked"} Deliver
+                      %input.mr-1{:name => "filter_deliver", :type => "checkbox", :value => "1", :checked => "checked", id: "checkbox_deliver"} Deliver
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1"} Elevator Building
-                    = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "search-button" do
+                      %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1", id: "checkbox_elevator"} Elevator Building
+                    = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "button_search" do
                       %i.fa.fa-search
         #main
           - if flash[:notice]

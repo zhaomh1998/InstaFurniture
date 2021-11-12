@@ -16,24 +16,45 @@ Background: furniture items have been added to database
 
 
 Scenario: restrict to furniture items with elevator_building
-  # Given I check the following tags: elevator_building 
-  When I am on the InstaFurniture home page
-  # When I press "Refresh"
-  Then I should see "Mission Oak II Queen Bookcase Storage Bed"
-  # Select a furniture item
-  Then I should see "Electric Kettle, Brentwood"
-  When I follow "More about Electric Kettle, Brentwood"
-  # Check the valid furniture names
-  Then I should see "Electric Kettle, Brentwood"
-  Then I should not see "Mission Oak II Queen Bookcase Storage Bed"
-  # Check valid boolean tags
-  Then I should see "No elevator in building"
-  Then I should see "Can deliver"
-  # Go back
-  When I follow "Back to listing list"
-  # Select another furniture
-  Then I follow "More about Mission Oak II Queen Bookcase Storage Bed"
-  # Check valid boolean tags
-  Then I should see "Building has elevator"
-  Then I should see "Buyer pick-up only"
+  Given I am on the InstaFurniture home page
+  When I check the following tags: checkbox_pick_up
+  And I check the following tags: checkbox_deliver
+  And I check the following tags: checkbox_elevator
+  And I press "button_search"
 
+  Then I should be on the InstaFurniture home page
+  And I should see "Mission Oak II Queen Bookcase Storage Bed"
+  And I should not see "Electric Kettle, Brentwood"
+
+  Scenario: restrict to furniture items with pickup_only
+    Given I am on the InstaFurniture home page
+    When I check the following tags: checkbox_pick_up
+    And I uncheck the following tags: checkbox_deliver
+    And I uncheck the following tags: checkbox_elevator
+    And I press "button_search"
+
+    Then I should be on the InstaFurniture home page
+    And I should see "Mission Oak II Queen Bookcase Storage Bed"
+    And I should not see "Electric Kettle, Brentwood"
+
+  Scenario: restrict to furniture items with deliver
+    Given I am on the InstaFurniture home page
+    When I uncheck the following tags: checkbox_pick_up
+    And I check the following tags: checkbox_deliver
+    And I uncheck the following tags: checkbox_elevator
+    And I press "button_search"
+
+    Then I should be on the InstaFurniture home page
+    And I should see "Electric Kettle, Brentwood"
+    And I should not see "Mission Oak II Queen Bookcase Storage Bed"
+
+  Scenario: restrict to furniture items with pick up and elevator building
+    Given I am on the InstaFurniture home page
+    When I check the following tags: checkbox_pick_up
+    And I uncheck the following tags: checkbox_deliver
+    And I check the following tags: checkbox_elevator
+    And I press "button_search"
+
+    Then I should be on the InstaFurniture home page
+    And I should see "Mission Oak II Queen Bookcase Storage Bed"
+    And I should not see "Electric Kettle, Brentwood"
