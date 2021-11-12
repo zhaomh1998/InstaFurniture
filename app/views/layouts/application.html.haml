@@ -26,7 +26,7 @@
             %ul.navbar-nav
               %li.nav-item
                 %form.form-inline{:action => listings_path}
-                  = form_tag listings_path, :method => :post do
+                  = form_tag listings_path, :method => :get do
                     = text_field_tag "query", "", class: "form-control mr-sm-2", id: "search-box"
                     %label.form-control.mr-sm-2
                       %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1", :checked => "checked", id: "checkbox_pick_up"} Pick-up
