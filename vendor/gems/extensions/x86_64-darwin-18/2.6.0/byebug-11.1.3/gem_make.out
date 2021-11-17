@@ -1,0 +1,19 @@
+current directory: /Users/duochen/Desktop/Winter20/SEAS/4995/InstaFurniture/vendor/gems/gems/byebug-11.1.3/ext/byebug
+/Users/duochen/.rvm/rubies/ruby-2.6.6/bin/ruby -I /Users/duochen/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20211117-80449-93floe.rb extconf.rb
+creating Makefile
+
+current directory: /Users/duochen/Desktop/Winter20/SEAS/4995/InstaFurniture/vendor/gems/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/duochen/Desktop/Winter20/SEAS/4995/InstaFurniture/vendor/gems/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/duochen/Desktop/Winter20/SEAS/4995/InstaFurniture/vendor/gems/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20211117-80449-13czjj6/byebug

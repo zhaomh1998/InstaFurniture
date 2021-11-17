@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.6.6'
 gem 'rails', '4.2.11'
 gem 'dotenv-rails'
+gem "omniauth-google-oauth2"
 
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do
