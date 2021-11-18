@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
-  pending "add some examples (or delete) #{__FILE__}"
+  # pending "add some examples (or delete) #{__FILE__}"
   # describe "GET /create" do
   #   it "returns http success" do
   #     get "/sessions/create"
