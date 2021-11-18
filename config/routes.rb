@@ -9,5 +9,7 @@ InstaFurniture::Application.routes.draw do
 
   # 'auth/:provider/callback' :to => 'sessions#create'
   # get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/:provider/callback' => 'sessions#create', :as => 'login'
+  get '/mock_login' => 'sessions#create_mock', :as => 'mock_login'
+  get '/logout' => 'sessions#logout', :as => 'logout'
 end

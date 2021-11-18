@@ -17,10 +17,10 @@ class ListingsController < ApplicationController
   end
 
   def show
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     id = params[:id] # retrieve listing ID from URI route
     @listing = Listing.find(id) # look up listing by unique ID
     # will render app/views/Listings/show.<extension> by default
@@ -64,38 +64,38 @@ class ListingsController < ApplicationController
   end
 
   def new
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     # default: render 'new' template
   end
 
   def create
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     @listing = Listing.create!(listing_params)
     flash[:notice] = "#{@listing.name} was successfully created."
     redirect_to listings_path
   end
 
   def edit
-    # TODO: Check user is the owner of this item
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # # TODO: Check user is the owner of this item
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     @listing = Listing.find params[:id]
   end
 
   def update
-    # TODO: Check user is the owner of this item
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # # TODO: Check user is the owner of this item
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     @listing = Listing.find params[:id]
     @listing.update_attributes!(listing_params)
     flash[:notice] = "#{@listing.name} was successfully updated."
@@ -103,11 +103,11 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    # TODO: Check user is the owner of this item
-    unless user_authenticated
-      flash[:notice] = 'Please log in with columbia.edu email'
-      redirect_to "/users"
-    end
+    # # TODO: Check user is the owner of this item
+    # unless user_authenticated
+    #   flash[:notice] = 'Please log in with columbia.edu email'
+    #   redirect_to "/users"
+    # end
     @listing = Listing.find(params[:id])
     @listing.destroy
     flash[:notice] = "Listing '#{@listing.name}' deleted."
