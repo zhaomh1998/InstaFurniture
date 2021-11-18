@@ -1,8 +1,10 @@
 Feature: Login
 
-  XX
+  The website will support user login functionality.
+  If the user does not login, the webpage will redirect the user to the login page.
+  Only the user with edu email account will be permitted to logim.
 
-  Background: XX
+  Background: furniture items have been added to database
 
     Given the following furniture items exist:
       | name                                      | description | location                                  | purchase_date | elevator_building | pickup_only |
@@ -15,7 +17,7 @@ Feature: Login
     And  I am on the InstaFurniture home page
     Then 5 furniture items should exist
 
-  Scenario: XX
+  Scenario: User will be redirect to login page if not login
     Given I am on the InstaFurniture home page
     And User not logged in
     Then I should be on the Login page
@@ -24,7 +26,7 @@ Feature: Login
     Then I should be on the Login page
     And Enable back test login bypass
 
-  Scenario: User sees markers on the webpage
+  Scenario: User back to home page after login
     Given I am on the InstaFurniture home page
     And User logged in
     Then I should be on the InstaFurniture home page
