@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20111119180638) do
+ActiveRecord::Schema.define(version: 20211117210529) do
 
   create_table "listings", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20111119180638) do
     t.boolean  "pickup_only"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "oauth_token"
+    t.string "oauth_expires_at"
   end
 
 end
