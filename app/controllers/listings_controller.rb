@@ -7,6 +7,9 @@ class ListingsController < ApplicationController
   end
 
   def index
+    unless session.has_key?('logged_in')
+      redirect_to "/users"
+    end
     @listings = Listing.all
 
     # Preference pickup / deliver
