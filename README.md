@@ -30,19 +30,23 @@ bundle exec cucumber
 - In the root directory, create a file named `.env` with following content
 ```
 MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+DEVELOPMENT=1
 ```
 For heroku deployment, use the following command to set the environment variable
 ```bash
 heroku config:set MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+heroku config:set GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+heroku config:set GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
 ### Heroku Demo Deployment
-[https://obscure-tundra-88655.herokuapp.com/](https://obscure-tundra-88655.herokuapp.com/ )
+[ https://evening-atoll-94372.herokuapp.com/](https://evening-atoll-94372.herokuapp.com/)
 
 ### GitHub Repo
-[https://github.com/zhaomh1998/InstaFurniture](https://github.com/zhaomh1998/InstaFurniture)
+[https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter2](https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter2)
 
 ### User stories
 As a student just arrive the campus,I have to go through the pain of moving in the new apartment, buying new furniture is expensive given that we only use them for one or two years, but for used ones, it’s difficult to find someone we trust on craigslist or facebook marketplace.
