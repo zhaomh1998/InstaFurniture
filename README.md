@@ -11,12 +11,33 @@ Member 3 UNI:  mz2866
 Member 4 Name: Yizhuo Wu
 Member 4 UNI:  yw3689
 ```
+### Install Ruby
+```bash
+# Install rbenv (NOTE: on mac, use `brew install rbenv`)
+sudo apt install rbenv
 
+# Install Ruby 2.6.6
+rbenv install --verbose 2.6.6
+rbenv global 2.6.6
+
+# Add path to bashrc (NOTE: on mac, .bashrc should be replaced by .zshrc)
+echo 'export PATH="$HOME/.rbenv/shims:$PATH"' >> ~/.bashrc
+
+# Check that ruby version is 2.6.6
+ruby -v
+
+```
 ### Setting up (Instructions to run and test the project)
 ```bash
 git clone git@github.com:zhaomh1998/InstaFurniture.git
 cd InstaFurniture
-# Note: on MacOS, do `brew install postgresql` first to resolve pg installation failure
+
+# Resolve postgresql installation error
+sudo apt install libpq-dev  # NOTE: on Mac, use `brew install postgresql` 
+
+# Resolve ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime
+sudo apt install nodejs  # NOTE: on Mac, use `brew install node`
+
 bundle install
 bundle exec rake db:migrate
 bundle exec rake db:test:prepare
