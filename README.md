@@ -29,7 +29,7 @@ ruby -v
 ```
 ### Setting up (Instructions to run and test the project)
 ```bash
-git clone git@github.com:zhaomh1998/InstaFurniture.git
+git clone https://github.com/zhaomh1998/InstaFurniture.git
 cd InstaFurniture
 
 # Resolve postgresql installation error
