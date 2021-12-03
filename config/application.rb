@@ -65,5 +65,7 @@ module InstaFurniture
     # Fix for Heroku deploy
     config.assets.initialize_on_precompile = false
 
+    # Fix for DeprecationWarning
+    Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
   end
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.6.6'
-gem 'rails', '4.2.11'
+gem 'rails', '5.2.3'
 gem 'dotenv-rails'
 gem "omniauth-google-oauth2"
 
@@ -13,8 +13,9 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'pry'
-  gem 'pry-byebug'
+  gem 'pry-byebug', "3.9.0"
   gem 'sqlite3', '~> 1.3.6'
+  gem 'rails-controller-testing'
 end
 
 group :test do
@@ -31,11 +32,11 @@ end
 # in production environments by default.
 
 gem 'sass-rails', '~> 5.0.3'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 gem 'uglifier', '>= 2.7.1'
 
 gem 'jquery-rails'
 gem 'haml'
-gem 'protected_attributes'
+gem 'protected_attributes_continued'
 
 # gem 'sqlite3', '~> 1.3.0'

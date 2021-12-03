@@ -38,6 +38,11 @@ sudo apt install libpq-dev  # NOTE: on Mac, use `brew install postgresql`
 # Resolve ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime
 sudo apt install nodejs  # NOTE: on Mac, use `brew install node`
 
+# Resolve mimemagic installation error 
+brew install shared-mime-info
+
+gem update bundler
+
 bundle install
 bundle exec rake db:migrate
 bundle exec rake db:test:prepare
