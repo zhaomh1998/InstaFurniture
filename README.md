@@ -68,6 +68,25 @@ heroku config:set GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 heroku config:set GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
+### Heroku Deployment
+```bash
+heroku create
+# You should see heroku in `git remote -v`
+# To remove a previous heroku remote, use `git remote rm heroku`
+git push heroku master
+# Note: To deploy from non-main branch, use
+git push heroku <branch>:main
+
+# Follow above "API Keys" to set up KEYs
+heroku config:set XXX=XXXXX
+
+# Initialize the databases
+heroku run rake db:migrate
+heroku run rake db:seed
+
+# To view any errors, use
+heroku logs
+```
 ### Heroku Demo Deployment
 [ https://evening-atoll-94372.herokuapp.com/](https://evening-atoll-94372.herokuapp.com/)
 
