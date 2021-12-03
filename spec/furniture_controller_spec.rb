@@ -31,7 +31,7 @@ RSpec.describe ListingsController, :type => :controller do
       Listing.delete_all
       listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
-      get :show, :id => 1
+      get :show, params: { id: 1 }
       expect(response).to render_template("listings/show")
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe ListingsController, :type => :controller do
 
     it "submit listing" do
       Listing.delete_all
-      post :create, :listing => { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
+      post :create, params: { listing: { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" } }
       expect(response).to redirect_to listings_path
       expect(flash[:notice]).to match(/listing1 was successfully created./)
     end
@@ -55,7 +55,7 @@ RSpec.describe ListingsController, :type => :controller do
       Listing.delete_all
       listing1 = { :name => "listing1", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
-      get :edit, :id => 1
+      get :edit, params: { id: 1 }
       expect(response).to render_template("listings/edit")
     end
 
@@ -63,8 +63,8 @@ RSpec.describe ListingsController, :type => :controller do
       Listing.delete_all
       listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
-      get :update, { :id => 1,
-                     :listing => { :name => "listing1_updated", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
+      get :update, params: { id: 1,
+                             listing: { :name => "listing1_updated", :description => "ipsum", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       }
       expect(response).to redirect_to listing_path(1)
       expect(flash[:notice]).to match(/listing1_updated was successfully updated./)
@@ -76,7 +76,7 @@ RSpec.describe ListingsController, :type => :controller do
       Listing.delete_all
       listing1 = { :name => "listing1", :description => "lorem", :elevator_building => "true", :pickup_only => "true", :purchase_date => "2017-07-20" }
       Listing.create(listing1)
-      delete :destroy, :id => 1
+      delete :destroy, params: { id: 1 }
       expect(response).to redirect_to listings_path
       expect(flash[:notice]).to match(/Listing 'listing1' deleted./)
     end

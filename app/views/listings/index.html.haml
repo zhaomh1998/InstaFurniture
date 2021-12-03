@@ -19,7 +19,10 @@
               - @listings.each do |listing|
                 .col-lg-4.mb-3.d-flex.align-items-stretch
                   .card.shadow{:id => "listing#{listing.id}"}
-                    %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
+                    - if listing.photo.attached?
+                      %img.card-img-top{:alt => "Card Image", :src => url_for(listing.photo)}/
+                    - else
+                      %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
                     .card-body.d-flex.flex-column
                       %h5.card-title #{listing.name}
                       -#%p.card-text.mb-4 #{listing.description}

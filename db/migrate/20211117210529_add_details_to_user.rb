@@ -1,4 +1,4 @@
-class AddDetailsToUser < ActiveRecord::Migration
+class AddDetailsToUser < ActiveRecord::Migration[4.2]
   def change
     create_table "users", force: :cascade do |t|
       t.string   "provider"
