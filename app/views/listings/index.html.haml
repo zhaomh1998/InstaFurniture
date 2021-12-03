@@ -35,9 +35,11 @@
             var names = [];
             var addresses = [];
             items.forEach(function (item) {
-              ids.push(item['id']);
-              names.push(item['name']);
-              addresses.push(item['location']);
+              if (item['location']) {
+                ids.push(item['id']);
+                names.push(item['name']);
+                addresses.push(item['location']);
+              }
             })
 
             window.onload = function() {
