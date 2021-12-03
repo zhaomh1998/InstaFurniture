@@ -28,4 +28,7 @@ InstaFurniture::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # ActiveStorage
+  config.active_storage.service = :local
 end

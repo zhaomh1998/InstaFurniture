@@ -6,6 +6,8 @@
 %p#description= @listing.description
 
 %ul#details
+  - if @listing.photo.attached?
+    %img{:src => (url_for(@listing.photo))}/
   %li
     Location:
     = @listing.location
