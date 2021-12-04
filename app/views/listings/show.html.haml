@@ -1,37 +1,84 @@
--# in app/views/Listings/show.html.haml
+!!!
+%html
+  %head
+    %script{:src => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"}
+    %link{:href => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    .row
+      .col-8.mx-auto{:align => "center", :style => "max-width: 640px;"}
+        .instf-listing-detail-header #{@listing.name}
+        - if @listing.photo.attached?
+          %img{:src => (url_for(@listing.photo))}
+        .instf-listing-detail-description
+          #description= @listing.description
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Location
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            = @listing.location
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Purchase Date
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            = @listing.purchase_date.strftime("%B %d, %Y")
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Phone
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            = @listing.phone
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Email
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            = @listing.email
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Elevator
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            - if @listing.elevator_building
+              = "Building has elevator"
+            - else
+              = "No elevator in building"
+        %hr
+        %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Pick-up
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            - if @listing.pickup_only
+              = "Buyer pick-up only"
+            - else
+              = "Seller can deliver"
+        = link_to 'Edit', edit_listing_path(@listing), :class => 'btn btn-primary'
+        = link_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+        = link_to 'Back to listing list', listings_path, :class => 'btn btn-primary'
 
-%h3 Details about #{@listing.name}
 
-%h4 Description:
-%p#description= @listing.description
+      .col-4.mx-auto.my-auto
+        #map{:style => "width: 100%; height: 530px;"}
+        :javascript
+              var addresses = [#{raw @listing.to_json}['location']];
+              console.log(addresses);
 
-%ul#details
-  - if @listing.photo.attached?
-    %img{:src => (url_for(@listing.photo))}/
-  %li
-    Location:
-    = @listing.location
-  %li
-    Purchase Date:
-    = @listing.purchase_date.strftime("%B %d, %Y")
-  %li
-    Phone Number:
-    = @listing.phone
-  %li
-    Email:
-    = @listing.email
-  %li
-    - if @listing.elevator_building
-      = "Building has elevator"
-    - else
-      = "No elevator in building"
-  %li
-    - if @listing.pickup_only
-      = "Buyer pick-up only"
-    - else
-      = "Can deliver"
+              window.onload = function() {
+                // See README for where to obtain and set up this API key
+                L.mapquest.key = "#{ENV["MAPQUEST_APIKEY"]}";
 
+                // Geocode locations, then call the createMap callback
+                L.mapquest.geocoding().geocode(addresses, createMap);
 
-= link_to 'Edit', edit_listing_path(@listing), :class => 'btn btn-primary'
-= link_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-= link_to 'Back to listing list', listings_path, :class => 'btn btn-primary'
+                function createMap(error, response) {
+                  var location = response.results[0].locations[0];
+                  var locationLatLng = location.latLng;
+                  // Initialize the Map
+                  var map = L.mapquest.map('map', {
+                    layers: L.mapquest.tileLayer('map'),
+                    center: [locationLatLng["lat"], locationLatLng["lng"]],
+                    zoom: 15
+                  });
+
+                  // Add markers to map
+                  L.marker([locationLatLng["lat"], locationLatLng["lng"]], {
+                            icon: L.mapquest.icons.marker(),
+                            draggable: false}).addTo(map);
+                }
+              }
+

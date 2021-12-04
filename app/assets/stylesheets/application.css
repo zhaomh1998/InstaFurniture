@@ -77,17 +77,47 @@ body {
     background-color: #ffc107;
 }
 
-.instf-listing-title {
+.instf-listing-card-title {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.2;
     text-align: center!important;
 }
 
-.instf-listing-price {
+.instf-listing-card-price {
     font-size: 1.5rem;
     font-weight: 600;
     color: #565959;
     line-height: 1.2;
     text-align: center!important;
+}
+
+.instf-listing-detail-header {
+    font-size: 2.0rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center!important;
+}
+
+.instf-listing-detail-description {
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #565959;
+    line-height: 1.2;
+    text-align: center!important;
+}
+
+.instf-listing-detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left!important;
+}
+
+.instf-listing-detail-content {
+    font-size: 1.0rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: left!important;
 }
