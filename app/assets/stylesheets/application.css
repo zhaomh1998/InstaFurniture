@@ -121,3 +121,17 @@ body {
     line-height: 1.2;
     text-align: left!important;
 }
+
+.instf-listing-edit-title-left {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left!important;
+}
+
+.instf-listing-edit-title-center {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center!important;
+}
