@@ -62,23 +62,32 @@
                 // See README for where to obtain and set up this API key
                 L.mapquest.key = "#{ENV["MAPQUEST_APIKEY"]}";
 
-                // Geocode locations, then call the createMap callback
-                L.mapquest.geocoding().geocode(addresses, createMap);
+                if(addresses[0]) {
+                  // Geocode locations, then call the createMap callback
+                  L.mapquest.geocoding().geocode(addresses, createMap);
 
-                function createMap(error, response) {
-                  var location = response.results[0].locations[0];
-                  var locationLatLng = location.latLng;
-                  // Initialize the Map
-                  var map = L.mapquest.map('map', {
-                    layers: L.mapquest.tileLayer('map'),
-                    center: [locationLatLng["lat"], locationLatLng["lng"]],
-                    zoom: 15
-                  });
+                  function createMap(error, response) {
+                    var location = response.results[0].locations[0];
+                    var locationLatLng = location.latLng;
+                    // Initialize the Map
+                    var map = L.mapquest.map('map', {
+                      layers: L.mapquest.tileLayer('map'),
+                      center: [locationLatLng["lat"], locationLatLng["lng"]],
+                      zoom: 15
+                    });
 
-                  // Add markers to map
-                  L.marker([locationLatLng["lat"], locationLatLng["lng"]], {
-                            icon: L.mapquest.icons.marker(),
-                            draggable: false}).addTo(map);
+                    // Add markers to map
+                    L.marker([locationLatLng["lat"], locationLatLng["lng"]], {
+                              icon: L.mapquest.icons.marker(),
+                              draggable: false}).addTo(map);
+                  }
+                }
+                else {
+                  L.mapquest.map('map', {
+                        layers: L.mapquest.tileLayer('map'),
+                        center: [40.8075, -73.9626],
+                        zoom: 15
+                      });
                 }
               }
 
