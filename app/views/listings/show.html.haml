@@ -15,6 +15,12 @@
     Purchase Date:
     = @listing.purchase_date.strftime("%B %d, %Y")
   %li
+    Phone Number:
+    = @listing.phone
+  %li
+    Email:
+    = @listing.email
+  %li
     - if @listing.elevator_building
       = "Building has elevator"
     - else
