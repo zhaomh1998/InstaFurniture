@@ -73,7 +73,7 @@ heroku config:set GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 heroku create
 # You should see heroku in `git remote -v`
 # To remove a previous heroku remote, use `git remote rm heroku`
-git push heroku master
+git push heroku main
 # Note: To deploy from non-main branch, use
 git push heroku <branch>:main
 
