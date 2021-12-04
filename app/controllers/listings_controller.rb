@@ -119,6 +119,6 @@ class ListingsController < ApplicationController
   def listing_params
     # https://api.rubyonrails.org/v6.1.4/classes/ActionController/StrongParameters.html
     params.require(:listing).permit(:name, :description, :elevator_building, :pickup_only, :purchase_date, :photo,
-                                    :uid, :email, :phone)
+                                    :uid, :email, :phone, :price)
   end
 end

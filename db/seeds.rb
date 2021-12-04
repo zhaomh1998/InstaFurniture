@@ -13,7 +13,8 @@ Will need to partially disassemble to remove from room. Just way too big to fit 
     :location => '2549 Broadway, New York, NY 10025',
     :purchase_date => '10-Oct-2019',
     :elevator_building => 1,
-    :pickup_only => 1
+    :pickup_only => 1,
+    :price => 300
   },
   {
     :name => 'Electric Kettle, Brentwood',
@@ -22,7 +23,8 @@ price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & B
     :location => '500 West 120th Street, New York, NY 10027',
     :purchase_date => '5-Dec-2020',
     :elevator_building => 0,
-    :pickup_only => 0
+    :pickup_only => 0,
+    :price => 10
   },
   {
     :name => 'Sofa bed with a pull out mattress',
@@ -30,7 +32,8 @@ price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & B
     :location => '400 W 119th St, New York, NY 10027-7109',
     :purchase_date => '15-Jun-2018',
     :elevator_building => 1,
-    :pickup_only => 1
+    :pickup_only => 1,
+    :price => 250
   },
   {
     :name => 'Wayfair Bench with storage',
@@ -38,7 +41,8 @@ price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & B
     :location => '103 West 107th Street, New York',
     :purchase_date => '20-Nov-2020',
     :elevator_building => 1,
-    :pickup_only => 0
+    :pickup_only => 0,
+    :price => 60
   },
   {
     :name => 'Desk and desk chair',
@@ -46,7 +50,8 @@ price $37.95. Used two years. Now sell for $10. PICK UP ONLY around 114th st & B
     :location => '302 West 102nd Street, New York',
     :purchase_date => '19-Mar-2018',
     :elevator_building => 0,
-    :pickup_only => 1
+    :pickup_only => 1,
+    :price => 35
   },
 ]
 

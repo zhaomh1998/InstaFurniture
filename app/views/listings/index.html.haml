@@ -24,7 +24,7 @@
                     - else
                       %img.card-img-top{:alt => "Card Image", :src => "https://magnolia.com/images/res.cloudinary.com/social-upload-prod-media-cld/image/upload/w_500,f_auto/shopify/1/0207/8508/products/CABT-42A-358_PRM_1_0467d179-1675-46eb-aa71-296adb947ea6.jpg?v=1630695960"}/
                     .card-body.d-flex.flex-column-reverse{:id => "listing#{listing.id}"}
-                      .instf-listing-card-price.mt-2 $5
+                      .instf-listing-card-price.mt-2 $#{listing.price}
                       .instf-listing-card-title #{listing.name}
         .col-4
           #map{:style => "width: 100%; height: 530px;"}

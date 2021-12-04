@@ -13,6 +13,12 @@
           #description= @listing.description
         %hr
         %dl.row
+          %dt.col-sm-4.my-auto.instf-listing-detail-title Ask
+          %dd.col-sm-8.my-auto.instf-listing-detail-content
+            $
+            = @listing.price
+        %hr
+        %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Location
           %dd.col-sm-8.my-auto.instf-listing-detail-content
             = @listing.location
