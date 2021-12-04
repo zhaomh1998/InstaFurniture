@@ -1,32 +1,63 @@
-%h2 Edit Existing Listing
+.row{:align => "center"}
+  .col-8.mx-auto{:align => "center", :style => "max-width: 640px;"}
+    %h2.mb-4 Edit Listing
 
-= form_tag listing_path(@listing), :method => :put, multipart: true do
-  = label :listing, :name, 'Name'
-  = text_field :listing, :name
-  %br
+    = form_tag listing_path(@listing), :method => :put, multipart: true do
+      .row
+        .col-sm-4.my-auto.instf-listing-edit-title-left
+          = label :listing, :name, 'Name'
+        .col-sm-8.my-auto
+          = text_field :listing, :name, class: 'form-control'
+      %hr
+      .row
+        .col-sm-4.my-auto.instf-listing-edit-title-left
+          = label :listing, :description, 'Description'
+        .col-sm-8.my-auto
+          = text_field :listing, :description, class: 'form-control'
+      %hr
+      .row
+        .col-sm-4.my-auto.instf-listing-edit-title-left
+          = label :listing, :location, 'Location'
+        .col-sm-8.my-auto
+          = text_field :listing, :location, class: 'form-control'
+      %hr
+      .row
+        .col-sm-4.my-auto.instf-listing-edit-title-left
+          = label :listing, :photo, 'Photo'
+        .col-sm-8.my-auto{:align => 'left'}
+          = file_field :listing, :photo
+      %hr
+      .row
+        .col-sm-4.my-auto.instf-listing-edit-title-left
+          = label :listing, :phone, 'Phone Number'
+        .col-sm-8.my-auto
+          = text_field :listing, :phone, class: 'form-control'
+      %hr
+      .row
+        .col
+          .m-auto.instf-listing-edit-title-center
+            = label :listing, :price, 'Buyer Pays'
+          .m-auto
+            .d-flex.flex-row.justify-content-center
+              .mr-1.my-auto $
+              .ml-0.my-auto
+                = text_field :listing, :price, class: 'form-control'
+        .col
+          .m-auto.instf-listing-edit-title-center
+            = label :listing, :purchase_date, 'Purchased On'
+          .m-auto
+            = date_select :listing, :purchase_date
+      %hr
+      .row
+        .col
+          .row-sm-8.mx-auto.instf-listing-edit-title-center
+            = label :listing, :elevator_building, 'Building has elevator'
+          .row-sm-4.mx-auto
+            = check_box :listing, :elevator_building
+        .col
+          .row-sm-8.mx-auto.instf-listing-edit-title-center
+            = label :listing, :pickup_only, 'Buyer must pick up'
+          .row-sm-4.mx-auto
+            = check_box :listing, :pickup_only
 
-  = label :listing, :description, 'Description'
-  = text_field :listing, :description
-  %br
-
-  = label :listing, :elevator_building, 'Building has elevator'
-  = check_box :listing, :elevator_building
-  %br
-
-  = label :listing, :pickup_only, 'Buyer must pick up'
-  = check_box :listing, :pickup_only
-  %br
-
-  = label :listing, :purchase_date, 'Purchased On'
-  = date_select :listing, :purchase_date
-  %br
-
-  = label :listing, 'Photo'
-  = file_field :listing, :photo
-  %br
-
-  = label :listing, 'Phone Number'
-  = text_field :listing, :phone
-  %br
-
-  = submit_tag 'Update Listing Info', :class => 'btn btn-primary'
+      = submit_tag 'Update Listing', :class => 'btn btn-primary'
