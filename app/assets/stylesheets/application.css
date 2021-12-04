@@ -66,3 +66,13 @@ a:link {
 .bg-logo {
     background-color:#0055a5
 }
+
+body {
+    font-family: 'Manrope', sans-serif !important;
+}
+
+.clickable-card:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #ffc107;
+}
