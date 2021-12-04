@@ -40,10 +40,12 @@
                       %i.fa.fa-search
         #main
           - if flash[:notice]
-            %div.alert.alert-danger
+            %div.alert.alert-danger.text-center
               #notice.message= flash[:notice]
           - elsif flash[:warning]
-            %div.alert.alert-danger
+            %div.alert.alert-danger.text-center
               #warning.message= flash[:warning]
-
+          - elsif flash[:success]
+            %div.alert.alert-success.text-center
+              #success.message= flash[:success]
           = yield

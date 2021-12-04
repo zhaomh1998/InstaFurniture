@@ -77,7 +77,7 @@ class ListingsController < ApplicationController
     #   redirect_to "/users"
     # end
     @listing = Listing.create!(listing_params)
-    flash[:notice] = "#{@listing.name} was successfully created."
+    flash[:success] = "#{@listing.name} was successfully created."
     redirect_to listings_path
   end
 
@@ -98,7 +98,7 @@ class ListingsController < ApplicationController
     # end
     @listing = Listing.find params[:id]
     @listing.update_attributes!(listing_params)
-    flash[:notice] = "#{@listing.name} was successfully updated."
+    flash[:success] = "#{@listing.name} was successfully updated."
     redirect_to listing_path(@listing)
   end
 
@@ -110,7 +110,7 @@ class ListingsController < ApplicationController
     # end
     @listing = Listing.find(params[:id])
     @listing.destroy
-    flash[:notice] = "Listing '#{@listing.name}' deleted."
+    flash[:success] = "Listing '#{@listing.name}' deleted."
     redirect_to listings_path
   end
 
