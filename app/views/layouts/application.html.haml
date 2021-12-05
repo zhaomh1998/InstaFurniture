@@ -22,11 +22,11 @@
             %span.navbar-toggler-icon
           #navbarColor02.navbar-collapse.collapse{:style => ""}
             %ul.navbar-nav
-              %li.nav-item.active
+              %li.nav-item{:id => "navbar-listing"}
                 %a.nav-link{:href => listings_path} Listings
-              %li.nav-item
+              %li.nav-item{:id => "navbar-add"}
                 %a.nav-link{:href => new_listing_path} Add Listing
-              %li.nav-item.mr-3
+              %li.nav-item.mr-3{:id => "navbar-my"}
                 %a.nav-link{:href => listings_path(:filter_my_listings => "1")} My Listings
             %ul.navbar-nav.mx-auto
               %li.nav-item

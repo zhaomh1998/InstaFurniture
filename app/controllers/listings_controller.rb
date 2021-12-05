@@ -54,9 +54,11 @@ class ListingsController < ApplicationController
       @listings = @listings.where(elevator_building: true)
     end
 
+    @show_my_listings = false
     # My listings
     if params.has_key?('filter_my_listings')
       @listings = @listings.where(uid: @user[:uid])
+      @show_my_listings = true
     end
 
     # Search keyword
