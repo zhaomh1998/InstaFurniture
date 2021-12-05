@@ -53,12 +53,18 @@ bundle exec cucumber
 
 #### API Keys
 - Obtain API key from [mapquest](https://developer.mapquest.com/)
+- Set up Google auth and obtain client id and client secret
+- Set up Amazon S3 bucket and obtain region and bucket name; set up IAM user with S3FullAccess permission, obtain access key id, secret access key
 - In the root directory, create a file named `.env` with following content
 ```
 MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+S3_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX
+S3_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+S3_REGION=XX
+S3_BUCKET=XX
 DEVELOPMENT=1
 ```
 For heroku deployment, use the following command to set the environment variable
@@ -66,6 +72,10 @@ For heroku deployment, use the following command to set the environment variable
 heroku config:set MAPQUEST_APIKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 heroku config:set GOOGLE_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 heroku config:set GOOGLE_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+heroku config:set S3_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX
+heroku config:set S3_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+heroku config:set S3_REGION=XX
+heroku config:set S3_BUCKET=XX
 ```
 
 ### Heroku Deployment

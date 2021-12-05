@@ -4,6 +4,7 @@ ruby '2.6.6'
 gem 'rails', '5.2.3'
 gem 'dotenv-rails'
 gem "omniauth-google-oauth2"
+gem "aws-sdk-s3"
 
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do

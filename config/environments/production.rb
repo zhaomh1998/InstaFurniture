@@ -62,5 +62,5 @@ InstaFurniture::Application.configure do
   config.active_support.deprecation = :notify
 
   # ActiveStorage
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 end

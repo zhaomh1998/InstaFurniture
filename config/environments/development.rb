@@ -30,5 +30,5 @@ InstaFurniture::Application.configure do
   config.assets.debug = true
 
   # ActiveStorage
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 end
