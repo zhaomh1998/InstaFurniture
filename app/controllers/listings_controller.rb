@@ -28,6 +28,7 @@ class ListingsController < ApplicationController
     end
     id = params[:id] # retrieve listing ID from URI route
     @listing = Listing.find(id) # look up listing by unique ID
+    @owns_listing = @listing[:uid] == @user[:uid]
     # will render app/views/Listings/show.<extension> by default
   end
 

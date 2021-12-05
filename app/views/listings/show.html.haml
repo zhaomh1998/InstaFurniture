@@ -56,10 +56,28 @@
               = "Buyer pick-up only"
             - else
               = "Seller can deliver"
-        = link_to 'Edit', edit_listing_path(@listing), :class => 'btn btn-primary'
-        = link_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-        = link_to 'Back to listing list', listings_path, :class => 'btn btn-primary'
-
+        - if @owns_listing
+          = link_to edit_listing_path(@listing), :class => 'btn btn-primary mr-1' do
+            .text-center
+              %i.fa.fa-edit
+              Edit
+          = link_to listing_path(@listing), :method => :delete, :class => 'btn btn-primary mr-1' do
+            .text-center
+              %i.fa.fa-trash-o
+              Delete
+        - else
+          = link_to "sms:#{@listing.phone}", :class => 'btn btn-primary mr-1' do
+            .text-center
+              %i.fa.fa-comment
+              Text
+          = link_to "mailto:#{@listing.email}", :class => 'btn btn-primary mr-1' do
+            .text-center
+              %i.fa.fa-envelope
+              Email
+        = link_to listing_path, :class => 'btn btn-primary mr-1' do
+          .text-center
+            %i.fa.fa-home
+            Back to listing list
 
       .col-4.mx-auto.my-auto
         #map.shadow.rounded{:style => "width: 100%; height: 530px;"}
