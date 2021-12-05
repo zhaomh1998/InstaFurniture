@@ -39,7 +39,7 @@
         %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Email
           %dd.col-sm-8.my-auto.instf-listing-detail-content
-            = @listing.email
+            = @owner_email
         %hr
         %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Elevator
@@ -70,11 +70,11 @@
             .text-center
               %i.fa.fa-comment
               Text
-          = link_to "mailto:#{@listing.email}", :class => 'btn btn-primary mr-1' do
+          = link_to "mailto:#{@owner_email}", :class => 'btn btn-primary mr-1' do
             .text-center
               %i.fa.fa-envelope
               Email
-        = link_to listing_path, :class => 'btn btn-primary mr-1' do
+        = link_to listings_path, :class => 'btn btn-primary mr-1' do
           .text-center
             %i.fa.fa-home
             Back to listing list

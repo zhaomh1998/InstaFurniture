@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2021_12_04_231405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "uid"
-    t.string "email"
     t.string "phone"
     t.float "price"
   end

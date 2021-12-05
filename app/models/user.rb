@@ -38,4 +38,12 @@ class User < ActiveRecord::Base
       :profile_pic => "https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png"
     }
   end
+
+  def self.get_email(uid)
+    user = User.where(uid: uid).first
+    if user.nil?
+      nil
+    end
+    user[:email]
+  end
 end

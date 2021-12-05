@@ -28,6 +28,7 @@ class ListingsController < ApplicationController
     end
     id = params[:id] # retrieve listing ID from URI route
     @listing = Listing.find(id) # look up listing by unique ID
+    @owner_email = User.get_email(@listing[:uid])
     @owns_listing = @listing[:uid] == @user[:uid]
     # will render app/views/Listings/show.<extension> by default
   end
@@ -108,7 +109,6 @@ class ListingsController < ApplicationController
     end
     new_listing_info = listing_params
     new_listing_info[:uid] = @user[:uid]
-    new_listing_info[:email] = @user[:email]
     @listing = Listing.create!(new_listing_info)
     flash[:success] = "#{@listing.name} was successfully created."
     redirect_to listings_path
