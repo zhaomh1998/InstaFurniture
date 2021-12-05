@@ -4,13 +4,14 @@
     %script{:src => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"}
     %link{:href => "https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css", :rel => "stylesheet", :type => "text/css"}/
   %body
-    .row
+    .row.mb-4
       .col-8.mx-auto{:align => "center", :style => "max-width: 640px;"}
-        .instf-listing-detail-header #{@listing.name}
-        - if @listing.photo.attached?
-          %img{:src => (url_for(@listing.photo))}
-        .instf-listing-detail-description
-          #description= @listing.description
+        .instf-listing-detail-header.mb-2 #{@listing.name}
+        .d-flex.flex-row.justify-content-between.mb-2
+          .instf-listing-detail-description.my-auto
+            #description= @listing.description
+          - if @listing.photo.attached?
+            %img.my-auto{:src => (url_for(@listing.photo)), :width => "300px"}
         %hr
         %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Ask

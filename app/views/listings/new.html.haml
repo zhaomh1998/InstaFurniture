@@ -59,5 +59,8 @@
             = label :listing, :pickup_only, 'Buyer must pick up'
           .row-sm-4.mx-auto
             = check_box :listing, :pickup_only
-
-      = submit_tag 'Create Listing', :class => 'btn btn-primary'
+      %hr.mb-4
+      .d-flex.flex-row.justify-content-center
+        = link_to 'Cancel', listings_path, :class => 'btn btn-primary'
+        .mx-2
+        = submit_tag 'Create Listing', :class => 'btn btn-primary'
