@@ -44,9 +44,7 @@ brew install shared-mime-info
 gem update bundler
 
 bundle install
-bundle exec rake db:migrate
-bundle exec rake db:test:prepare
-bundle exec rake db:seed
+bundle exec rake db:migrate db:test:prepare db:seed
 bundle exec rspec
 bundle exec cucumber
 ```
@@ -91,17 +89,19 @@ git push heroku <branch>:main
 heroku config:set XXX=XXXXX
 
 # Initialize the databases
-heroku run rake db:migrate
-heroku run rake db:seed
+heroku run rake db:migrate db:seed
 
 # To view any errors, use
 heroku logs
+
+# To use heroku terminal for any debugging or run rake commands, use
+heroku run bash
 ```
 ### Heroku Demo Deployment
-[ https://evening-atoll-94372.herokuapp.com/](https://evening-atoll-94372.herokuapp.com/)
+[ https://insta-furniture.herokuapp.com/](https://insta-furniture.herokuapp.com/)
 
 ### GitHub Repo
-[https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter2](https://github.com/zhaomh1998/InstaFurniture/tree/proj-iter2)
+[https://github.com/zhaomh1998/InstaFurniture/tree/proj-demo](https://github.com/zhaomh1998/InstaFurniture/tree/proj-demo)
 
 ### User stories
 As a student just arrive the campus,I have to go through the pain of moving in the new apartment, buying new furniture is expensive given that we only use them for one or two years, but for used ones, it’s difficult to find someone we trust on craigslist or facebook marketplace.
