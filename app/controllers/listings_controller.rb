@@ -39,19 +39,29 @@ class ListingsController < ApplicationController
       return
     end
     @listings = Listing.all
+    @last_query = {
+      :pickup => true,
+      :deliver => true,
+      :elevator => false
+    }
 
     # Preference pickup / deliver
     unless params.has_key?('filter_pick_up') && params.has_key?('filter_deliver')
       if params.has_key?('filter_pick_up') # Pick up only
         @listings = @listings.where(pickup_only: true)
+        @last_query[:pickup] = true
+        @last_query[:deliver] = false
       elsif params.has_key?('filter_deliver')
         @listings = @listings.where.not(pickup_only: true)
+        @last_query[:pickup] = false
+        @last_query[:deliver] = true
       end
     end
 
     # Elevator building
     if params.has_key?('filter_elevator')
       @listings = @listings.where(elevator_building: true)
+      @last_query[:elevator] = true
     end
 
     @show_my_listings = false
@@ -64,6 +74,7 @@ class ListingsController < ApplicationController
     # Search keyword
     if params.has_key?('query') && !params[:query].blank?
       input = params[:query]
+      @last_query[:search] = input
       search_words = input.split(' ')
       result = []
 

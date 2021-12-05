@@ -32,13 +32,20 @@
               %li.nav-item
                 %form.form-inline{:action => listings_path}
                   = form_tag listings_path, :method => :get do
-                    = text_field_tag "query", "", class: "form-control mr-sm-2", id: "search-box"
+                    = text_field_tag "query", (@last_query && @last_query[:search] ? "#{@last_query[:search]}" : ""),
+                                    class: "form-control mr-sm-2", id: "search-box"
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1", :checked => "checked", id: "checkbox_pick_up"} Pick-up
+                      %input.mr-1{:name => "filter_pick_up", :type => "checkbox", :value => "1",
+                                  :checked => (@last_query && !@last_query[:pickup] ? false : true),
+                                  id: "checkbox_pick_up"} Pick-up
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_deliver", :type => "checkbox", :value => "1", :checked => "checked", id: "checkbox_deliver"} Deliver
+                      %input.mr-1{:name => "filter_deliver", :type => "checkbox", :value => "1",
+                                  :checked => (@last_query && !@last_query[:deliver] ? false : true),
+                                  id: "checkbox_deliver"} Deliver
                     %label.form-control.mr-sm-2
-                      %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1", id: "checkbox_elevator"} Elevator Building
+                      %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1",
+                                  :checked => (@last_query && @last_query[:elevator] ? true : false),
+                                  id: "checkbox_elevator"} Elevator Building
                     = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "button_search" do
                       %i.fa.fa-search
           -#%a.navbar-brand
