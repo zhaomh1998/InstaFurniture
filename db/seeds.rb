@@ -14,7 +14,9 @@ listings = [
     :elevator_building => 1,
     :pickup_only => 1,
     :price => 0,
-    :image => 'seed-1.jpg'
+    :image => 'seed-1.jpg',
+    :phone => "2128541754",
+    :uid => "1"
   },
   {
     :name => 'Ikea Desk',
@@ -30,7 +32,9 @@ https://www.ikea.com/us/en/p/lagkapten-adils-desk-black-brown-black-s49417021/#c
     :elevator_building => 0,
     :pickup_only => 1,
     :price => 30,
-    :image => 'seed-2.jpg'
+    :image => 'seed-2.jpg',
+    :phone => "2129327722",
+    :uid => "2"
   },
   {
     :name => 'Aeron Chair Herman Miller Size B',
@@ -40,7 +44,9 @@ https://www.ikea.com/us/en/p/lagkapten-adils-desk-black-brown-black-s49417021/#c
     :elevator_building => 1,
     :pickup_only => 1,
     :price => 140,
-    :image => 'seed-3.jpg'
+    :image => 'seed-3.jpg',
+    :phone => "8054392845",
+    :uid => "3"
   },
   {
     :name => 'Used Office Chair',
@@ -50,7 +56,9 @@ https://www.ikea.com/us/en/p/lagkapten-adils-desk-black-brown-black-s49417021/#c
     :elevator_building => 0,
     :pickup_only => 0,
     :price => 25,
-    :image => 'seed-4.jpg'
+    :image => 'seed-4.jpg',
+    :phone => "2126635520",
+    :uid => "4"
   },
   {
     :name => 'Small Desk for Home Office',
@@ -65,7 +73,9 @@ Pick up only",
     :elevator_building => 0,
     :pickup_only => 1,
     :price => 35,
-    :image => 'seed-5.jpg'
+    :image => 'seed-5.jpg',
+    :phone => "2128541754",
+    :uid => "1"
   },
   {
     :name => 'Target office chair',
@@ -75,7 +85,9 @@ Pick up only",
     :elevator_building => 1,
     :pickup_only => 1,
     :price => 40,
-    :image => 'seed-6.jpg'
+    :image => 'seed-6.jpg',
+    :phone => "2129327722",
+    :uid => "2"
   },
   {
     :name => 'MUJI Wooden Full Size Bed Frame',
@@ -85,7 +97,9 @@ Pick up only",
     :elevator_building => 0,
     :pickup_only => 1,
     :price => 100,
-    :image => 'seed-7.jpg'
+    :image => 'seed-7.jpg',
+    :phone => "8054392845",
+    :uid => "3"
   },
   {
     :name => 'Ikea dresser 4 drawers 40-31-19',
@@ -97,7 +111,9 @@ Available for pick up or I can have delivered locally for a small fee",
     :elevator_building => 1,
     :pickup_only => 0,
     :price => 100,
-    :image => 'seed-8.jpg'
+    :image => 'seed-8.jpg',
+    :phone => "2126635520",
+    :uid => "4"
   },
   {
     :name => 'Haugsvär Ikea Mattress.',
@@ -107,7 +123,9 @@ Available for pick up or I can have delivered locally for a small fee",
     :elevator_building => 1,
     :pickup_only => 1,
     :price => 200,
-    :image => 'seed-9.jpg'
+    :image => 'seed-9.jpg',
+    :phone => "2128541754",
+    :uid => "1"
   },
   {
     :name => 'IKEA Sofa',
@@ -121,7 +139,9 @@ Height: 26”",
     :elevator_building => 1,
     :pickup_only => 1,
     :price => 50,
-    :image => 'seed-10.jpg'
+    :image => 'seed-10.jpg',
+    :phone => "2129327722",
+    :uid => "2"
   },
   {
     :name => 'Sofa',
@@ -131,7 +151,9 @@ Height: 26”",
     :elevator_building => 0,
     :pickup_only => 0,
     :price => 150,
-    :image => 'seed-11.jpg'
+    :image => 'seed-11.jpg',
+    :phone => "8054392845",
+    :uid => "3"
   },
 ]
 
@@ -143,4 +165,52 @@ listings.each do |listing|
       filename: listing[:image]
     )
   end
+end
+
+
+users = [
+  {
+    :provider => "google_oauth2",
+    :uid => "1",
+    :oauth_token => "0",
+    :oauth_expires_at => 9999999999,
+    :email => "test1@columbia.edu",
+    :first_name => "Test",
+    :last_name => "User1",
+    :profile_pic => "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+  },
+  {
+    :provider => "google_oauth2",
+    :uid => "2",
+    :oauth_token => "0",
+    :oauth_expires_at => 9999999999,
+    :email => "test2@columbia.edu",
+    :first_name => "Test",
+    :last_name => "User2",
+    :profile_pic => "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+  },
+  {
+    :provider => "google_oauth2",
+    :uid => "3",
+    :oauth_token => "0",
+    :oauth_expires_at => 9999999999,
+    :email => "test3@columbia.edu",
+    :first_name => "Test",
+    :last_name => "User3",
+    :profile_pic => "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+  },
+  {
+    :provider => "google_oauth2",
+    :uid => "4",
+    :oauth_token => "0",
+    :oauth_expires_at => 9999999999,
+    :email => "test4@columbia.edu",
+    :first_name => "Test",
+    :last_name => "User4",
+    :profile_pic => "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+  }
+]
+
+users.each do |user|
+  User.create!(user)
 end
