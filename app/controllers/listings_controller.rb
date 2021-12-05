@@ -1,33 +1,38 @@
 class ListingsController < ApplicationController
 
-  def user_authenticated
+  def get_user_info
     if not ENV['CUCUMBER_TESTING'].nil? and ENV['CUCUMBER_TESTING'] == "ENABLED"
       # Automatically log in for cucumber testing
-      true
+      uid = session.has_key?(:uid)? session[:uid] : "1"
+      User.get_mock_user(uid)
     elsif not ENV['RSPEC_TESTING'].nil? and ENV['RSPEC_TESTING'] == "ENABLED"
       # Automatically log in for rspec testing
-      true
-    elsif session.has_key?('logged_in') and session['logged_in'] == 1
+      uid = session.has_key?(:uid)? session[:uid] : "1"
+      User.get_mock_user(uid)
+    elsif session.has_key?(:uid)
       # User logged in
-      true
+      uid = session[:uid]
+      User.get_user_info(uid)
     else
       # User not logged in
-      false
+      nil
     end
   end
 
   def show
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     id = params[:id] # retrieve listing ID from URI route
     @listing = Listing.find(id) # look up listing by unique ID
     # will render app/views/Listings/show.<extension> by default
   end
 
   def index
-    unless user_authenticated
+    @user = get_user_info
+    if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
     end
@@ -64,38 +69,42 @@ class ListingsController < ApplicationController
   end
 
   def new
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     # default: render 'new' template
   end
 
   def create
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     @listing = Listing.create!(listing_params)
     flash[:success] = "#{@listing.name} was successfully created."
     redirect_to listings_path
   end
 
   def edit
-    # # TODO: Check user is the owner of this item
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    # TODO: Check user is the owner of this item
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     @listing = Listing.find params[:id]
   end
 
   def update
-    # # TODO: Check user is the owner of this item
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    # TODO: Check user is the owner of this item
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     @listing = Listing.find params[:id]
     @listing.update_attributes!(listing_params)
     flash[:success] = "#{@listing.name} was successfully updated."
@@ -103,11 +112,12 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    # # TODO: Check user is the owner of this item
-    # unless user_authenticated
-    #   flash[:notice] = 'Please log in with columbia.edu email'
-    #   redirect_to "/users"
-    # end
+    # TODO: Check user is the owner of this item
+    @user = get_user_info
+    if @user.nil?
+      flash[:notice] = 'Please log in with columbia.edu email'
+      redirect_to "/users"
+    end
     @listing = Listing.find(params[:id])
     @listing.destroy
     flash[:success] = "Listing '#{@listing.name}' deleted."
