@@ -24,6 +24,7 @@ class ListingsController < ApplicationController
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     id = params[:id] # retrieve listing ID from URI route
     @listing = Listing.find(id) # look up listing by unique ID
@@ -35,6 +36,7 @@ class ListingsController < ApplicationController
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     @listings = Listing.all
 
@@ -78,6 +80,7 @@ class ListingsController < ApplicationController
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     # default: render 'new' template
   end
@@ -87,6 +90,7 @@ class ListingsController < ApplicationController
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     new_listing_info = listing_params
     new_listing_info[:uid] = @user[:uid]
@@ -97,36 +101,50 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    # TODO: Check user is the owner of this item
     @user = get_user_info
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     @listing = Listing.find params[:id]
+    if @listing[:uid] != @user[:uid]
+      flash[:notice] = "Error: You are not allowed to edit someone else's listing!"
+      redirect_to listings_path
+    end
   end
 
   def update
-    # TODO: Check user is the owner of this item
     @user = get_user_info
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     @listing = Listing.find params[:id]
+    if @listing[:uid] != @user[:uid]
+      flash[:notice] = "Error: You are not allowed to edit someone else's listing!"
+      redirect_to listings_path
+      return
+    end
     @listing.update_attributes!(listing_params)
     flash[:success] = "#{@listing.name} was successfully updated."
     redirect_to listing_path(@listing)
   end
 
   def destroy
-    # TODO: Check user is the owner of this item
     @user = get_user_info
     if @user.nil?
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
+      return
     end
     @listing = Listing.find(params[:id])
+    if @listing[:uid] != @user[:uid]
+      flash[:notice] = "Error: You are not allowed to delete someone else's listing!"
+      redirect_to listings_path
+      return
+    end
     @listing.destroy
     flash[:success] = "Listing '#{@listing.name}' deleted."
     redirect_to listings_path
