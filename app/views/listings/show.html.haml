@@ -8,10 +8,11 @@
       .col-8.mx-auto{:align => "center", :style => "max-width: 640px;"}
         .instf-listing-detail-header.mb-2 #{@listing.name}
         .d-flex.flex-row.justify-content-between.mb-2
+          - if @listing.photo.attached?
+            %img.my-auto.shadow{:src => (url_for(@listing.photo)), :width => "300px"}
+          .mx-2
           .instf-listing-detail-description.my-auto
             #description= @listing.description
-          - if @listing.photo.attached?
-            %img.my-auto{:src => (url_for(@listing.photo)), :width => "300px"}
         %hr
         %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Ask
