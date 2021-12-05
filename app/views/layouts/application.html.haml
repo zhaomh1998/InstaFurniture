@@ -12,20 +12,23 @@
     :css
       @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-    %body
-      %div.container-fullwidth
-        %nav.navbar.navbar-expand-lg.navbar-dark.bg-logo.mb-4
-          %a.navbar-brand{:href => listings_path}
-            = image_tag("logo.svg", size: "150x50")
+  %body
+    %div.container-fullwidth
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-logo.mb-4
+        %a.navbar-brand{:href => listings_path}
+          = image_tag("logo.svg", size: "150x50")
+        - if @user
           %button.navbar-toggler.collapsed{"aria-controls" => "navbarColor02", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarColor02", "data-toggle" => "collapse", :type => "button"}
             %span.navbar-toggler-icon
           #navbarColor02.navbar-collapse.collapse{:style => ""}
-            %ul.navbar-nav.mr-auto
+            %ul.navbar-nav
               %li.nav-item.active
                 %a.nav-link{:href => listings_path} Listings
               %li.nav-item
                 %a.nav-link{:href => new_listing_path} Add Listing
-            %ul.navbar-nav
+              %li.nav-item.mr-3
+                %a.nav-link{:href => new_listing_path} My Listings
+            %ul.navbar-nav.mx-auto
               %li.nav-item
                 %form.form-inline{:action => listings_path}
                   = form_tag listings_path, :method => :get do
@@ -38,14 +41,29 @@
                       %input.mr-1{:name => "filter_elevator", :type => "checkbox", :value => "1", id: "checkbox_elevator"} Elevator Building
                     = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "button_search" do
                       %i.fa.fa-search
-        #main
-          - if flash[:notice]
-            %div.alert.alert-danger.text-center
-              #notice.message= flash[:notice]
-          - elsif flash[:warning]
-            %div.alert.alert-danger.text-center
-              #warning.message= flash[:warning]
-          - elsif flash[:success]
-            %div.alert.alert-success.text-center
-              #success.message= flash[:success]
-          = yield
+          -#%a.navbar-brand
+          -#  = image_tag("#{@user[:profile_pic]}", size: "30x30")
+          %img.rounded-circle.float-right.shadow{:src => "#{@user[:profile_pic]}", :width => "30px"}
+          .navbar-nav.pull-right
+            .dropdown
+              %a.dropdown-toggle.nav-link.active{"data-toggle" => "dropdown", :href => "#"}
+                Welcome, #{@user[:first_name]} #{@user[:last_name]}
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "logout"}
+                    .text-center
+                      %i.fa.fa-power-off
+                      Logout
+
+      #main
+        - if flash[:notice]
+          %div.alert.alert-danger.text-center
+            #notice.message= flash[:notice]
+        - elsif flash[:warning]
+          %div.alert.alert-danger.text-center
+            #warning.message= flash[:warning]
+        - elsif flash[:success]
+          %div.alert.alert-success.text-center
+            #success.message= flash[:success]
+        = yield
