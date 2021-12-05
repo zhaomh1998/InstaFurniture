@@ -68,7 +68,7 @@ class ListingsController < ApplicationController
       result = []
 
       search_words.each do |word|
-        result.concat(@listings.where("name LIKE ?", "%#{word}%").to_a)
+        result.concat(@listings.where("LOWER(name) LIKE ?", "%#{word.downcase}%").to_a)
       end
       @listings = result
     end
