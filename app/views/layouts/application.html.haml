@@ -48,20 +48,19 @@
                                   id: "checkbox_elevator"} Elevator Building
                     = button_tag type: 'submit', class: "btn btn-outline-light my-2 my-sm-0", id: "button_search" do
                       %i.fa.fa-search
-          -#%a.navbar-brand
-          -#  = image_tag("#{@user[:profile_pic]}", size: "30x30")
-          %img.rounded-circle.float-right.shadow{:src => "#{@user[:profile_pic]}", :width => "30px"}
-          .navbar-nav.pull-right
-            .dropdown
-              %a.dropdown-toggle.nav-link.active{"data-toggle" => "dropdown", :href => "#"}
-                Welcome, #{@user[:first_name]} #{@user[:last_name]}
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "logout"}
-                    .text-center
-                      %i.fa.fa-power-off
-                      Logout
+          .d-flex.flex-row-reverse.align-items-center
+            .navbar-nav.pull-right.ml-1
+              .dropdown
+                %a.dropdown-toggle.nav-link.active{"data-toggle" => "dropdown", :href => "#"}
+                  Welcome, #{@user[:first_name]} #{@user[:last_name]}
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "logout"}
+                      .text-center
+                        %i.fa.fa-power-off
+                        Logout
+            %img.rounded-circle.float-right.shadow{:src => "#{@user[:profile_pic]}", :height => "30px", :width => "30px"}
 
       #main
         - if flash[:notice]

@@ -7,9 +7,10 @@
     .row.mb-4
       .col-8.mx-auto{:align => "center", :style => "max-width: 640px;"}
         .instf-listing-detail-header.mb-2 #{@listing.name}
+        %hr
         .d-flex.flex-row.justify-content-between.mb-2
           - if @listing.photo.attached?
-            %img.my-auto.shadow{:src => (url_for(@listing.photo)), :width => "300px"}
+            %img.my-auto.shadow.rounded{:src => (url_for(@listing.photo)), :width => "300px"}
           .mx-2
           .instf-listing-detail-description.my-auto
             #description= @listing.description
@@ -61,7 +62,7 @@
 
 
       .col-4.mx-auto.my-auto
-        #map{:style => "width: 100%; height: 530px;"}
+        #map.shadow.rounded{:style => "width: 100%; height: 530px;"}
         :javascript
               var addresses = [#{raw @listing.to_json}['location']];
               console.log(addresses);
