@@ -2,6 +2,15 @@ class SessionsController < ApplicationController
   def create
     # Real user login
     auth = request.env['omniauth.auth']
+
+    # Restrict to @columbia.edu, @*.columbia.edu, @barnard.edu, @*.barnard.edu
+    email_domain = auth[:info][:email].split("@").last
+    if !/^(.+\.)*columbia.edu$/i.match(email_domain) && !/^(.+\.)*barnard.edu$/i.match(email_domain)
+      flash[:notice] = "Login failed: @#{email_domain} is not a valid Columbia email. InstaFurniture only accepts Columbia users."
+      redirect_to '/users'
+      return
+    end
+
     User.from_omniauth(auth)
     session['uid'] = auth[:uid]
     redirect_to root_path
