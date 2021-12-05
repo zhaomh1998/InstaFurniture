@@ -52,6 +52,11 @@ class ListingsController < ApplicationController
       @listings = @listings.where(elevator_building: true)
     end
 
+    # My listings
+    if params.has_key?('filter_my_listings')
+      @listings = @listings.where(uid: @user[:uid])
+    end
+
     # Search keyword
     if params.has_key?('query') && !params[:query].blank?
       input = params[:query]
@@ -83,7 +88,10 @@ class ListingsController < ApplicationController
       flash[:notice] = 'Please log in with columbia.edu email'
       redirect_to "/users"
     end
-    @listing = Listing.create!(listing_params)
+    new_listing_info = listing_params
+    new_listing_info[:uid] = @user[:uid]
+    new_listing_info[:email] = @user[:email]
+    @listing = Listing.create!(new_listing_info)
     flash[:success] = "#{@listing.name} was successfully created."
     redirect_to listings_path
   end

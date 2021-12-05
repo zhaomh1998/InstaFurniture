@@ -27,7 +27,7 @@
               %li.nav-item
                 %a.nav-link{:href => new_listing_path} Add Listing
               %li.nav-item.mr-3
-                %a.nav-link{:href => new_listing_path} My Listings
+                %a.nav-link{:href => listings_path(:filter_my_listings => "1")} My Listings
             %ul.navbar-nav.mx-auto
               %li.nav-item
                 %form.form-inline{:action => listings_path}
