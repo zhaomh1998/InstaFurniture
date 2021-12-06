@@ -19,6 +19,11 @@ class SessionsController < ApplicationController
   def create_mock
     # Mock user login in test
     # TODO: Make sure only test frameworks can do this
+    if params.has_key?(:uid)
+      session['uid'] = params[:uid]
+      redirect_to root_path
+      return
+    end
     auth = {
       :provider => 'google_oauth2',
       :uid => '116978184920182545388',
