@@ -9,11 +9,19 @@
         .instf-listing-detail-header.mb-2 #{@listing.name}
         %hr
         .d-flex.flex-row.justify-content-between.mb-2
-          - if @listing.photo.attached?
+          - if @listing.photo.attached? && @listing.description != ""
+            -# Both photo and description
             %img.my-auto.shadow.rounded{:src => (url_for(@listing.photo)), :width => "300px"}
-          .mx-2
-          .instf-listing-detail-description.my-auto
-            #description= @listing.description
+            .mx-2
+            .instf-listing-detail-description.my-auto
+              #description= @listing.description
+          - elsif @listing.photo.attached? && @listing.description == ""
+            -# Only photo
+            %img.m-auto.shadow.rounded{:src => (url_for(@listing.photo)), :width => "300px"}
+          - else
+            -# Only description or nothing
+            .instf-listing-detail-description.m-auto
+              #description= @listing.description
         %hr
         %dl.row
           %dt.col-sm-4.my-auto.instf-listing-detail-title Ask
