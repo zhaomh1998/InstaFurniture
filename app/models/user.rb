@@ -29,16 +29,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.get_mock_user(desired_uid)
-    {
-      :uid => desired_uid.to_s,
-      :email => "test_user@columbia.edu",
-      :first_name => "Test",
-      :last_name => "User",
-      :profile_pic => "https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png"
-    }
-  end
-
   def self.get_email(uid)
     user = User.where(uid: uid).first
     if user.nil?
