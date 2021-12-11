@@ -1,15 +1,7 @@
 class ListingsController < ApplicationController
 
   def get_user_info
-    if not ENV['CUCUMBER_TESTING'].nil? and ENV['CUCUMBER_TESTING'] == "ENABLED"
-      # Automatically log in for cucumber testing
-      uid = session.has_key?(:uid)? session[:uid] : "1"
-      User.get_mock_user(uid)
-    elsif not ENV['RSPEC_TESTING'].nil? and ENV['RSPEC_TESTING'] == "ENABLED"
-      # Automatically log in for rspec testing
-      uid = session.has_key?(:uid)? session[:uid] : "1"
-      User.get_mock_user(uid)
-    elsif session.has_key?(:uid)
+    if session.has_key?(:uid)
       # User logged in
       uid = session[:uid]
       User.get_user_info(uid)
