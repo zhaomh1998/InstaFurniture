@@ -116,4 +116,40 @@ RSpec.describe ListingsController, :type => :controller do
     end
   end
 
+  describe "search and filter listings" do
+    it "search with 2 results" do
+      get :index, params: { query: "desk", filter_pick_up: "1", filter_deliver: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "search with 1 results" do
+      get :index, params: { query: "dresser", filter_pick_up: "1", filter_deliver: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "search with no result" do
+      get :index, params: { query: "ThisIsNotInAnyListing", filter_pick_up: "1", filter_deliver: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "filter deliver with 3 results" do
+      get :index, params: { query: "", filter_deliver: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "filter pick_up with 2 results" do
+      get :index, params: { query: "desk", filter_pick_up: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "filter elevator with 6 results" do
+      get :index, params: { query: "", filter_pick_up: "1", filter_deliver: "1", filter_elevator: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+
+    it "filter my listings with 3 results" do
+      get :index, params: { filter_my_listings: "1" }, session: { uid: "1" }
+      expect(response).to render_template("listings/index")
+    end
+  end
 end
