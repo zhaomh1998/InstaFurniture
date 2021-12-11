@@ -89,4 +89,14 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # Seed database before rspec
+  config.before(:suite) do
+    Rails.application.load_seed
+  end
+
+  # Cleanup database after rspec
+  config.after :all do
+    ActiveRecord::Base.subclasses.each(&:delete_all)
+  end
 end
