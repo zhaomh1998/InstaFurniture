@@ -12,12 +12,40 @@ Feature: Login
 
 
   Scenario: User will be redirected to login page from all pages if not logged in
+    Given User not logged in
+
     Given I go to the InstaFurniture home page
-    And User not logged in
     Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
 
     Given I go to the Listings page
     Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+
+
+    Given I go to the New page
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+
+    Given I view listing 1
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+    
+    Given I create listing "listingName"
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+
+    Given I edit listing 1
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+
+    Given I submit edit to listing 1 renaming to "listingNewName"
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
+
+    Given I delete listing 1
+    Then I should be on the Login page
+    And I should see "Please log in with columbia.edu email"
 
 
   Scenario: User back to home page after logging in
