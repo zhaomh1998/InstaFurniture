@@ -75,3 +75,7 @@ end
 When /^I delete listing (\d+)$/ do |listing_id|
   Capybara.current_session.driver.submit :delete, "/listings/#{listing_id}", nil
 end
+
+When /^I click listing "([^"]*)"$/ do |listing_name|
+  find("\##{listing_name}").click
+end

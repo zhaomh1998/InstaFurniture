@@ -28,7 +28,7 @@
             .row
               - @listings.each do |listing|
                 .col-lg-4.mb-3.d-flex.align-items-stretch
-                  .card.shadow.clickable-card{:onclick => "location.href='#{listing_path(listing)}'"}
+                  %a.card.shadow.clickable-card{:href => "#{listing_path(listing)}", :id => "listing_card_#{listing.id}"}
                     - if listing.photo.attached?
                       %img.card-img-top{:alt => "Card Image", :src => url_for(listing.photo)}/
                     - else
