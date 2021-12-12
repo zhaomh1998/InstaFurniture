@@ -9,8 +9,6 @@ require 'cucumber/rails'
 require 'rspec/rails'
 SimpleCov.start 'rails' 
 
-# For ignoring login
-ENV['CUCUMBER_TESTING'] = "ENABLED"
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -60,3 +58,13 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Before do
+  unless @database_seeded
+    Rails.application.load_seed
+    @database_seeded = true
+  end
+end
+
+at_exit do
+  ActiveRecord::Base.subclasses.each(&:delete_all)
+end

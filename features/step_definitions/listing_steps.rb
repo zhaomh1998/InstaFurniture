@@ -1,5 +1,9 @@
 # Add a declarative step here for populating the DB with Listings.
 
+Given /database is seeded/ do
+  expect(@database_seeded).to be_truthy
+end
+
 Given /the following furniture items exist/ do |listings_table|
   listings_table.hashes.each do |listing|
     # each returned element will be a hash whose key is the table header.
@@ -14,9 +18,8 @@ Then /(.*) furniture items should exist/ do | n_seeds |
   expect(Listing.count).to eq n_seeds.to_i
 end
 
-
-Then /(.*) seed furniture should exist/ do | n_seeds |
-  expect(Listing.count).to eq n_seeds.to_i
+Then /(.*) users should exist/ do | n_seeds |
+  expect(User.count).to eq n_seeds.to_i
 end
 
 # Make sure that one string (regexp) occurs before or after another one

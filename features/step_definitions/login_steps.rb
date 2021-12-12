@@ -1,3 +1,7 @@
+Given(/^Log in as (.*)/) do |uid|
+  visit "/mock_login/#{uid}"
+end
+
 Given(/^User not logged in/) do
   ENV['CUCUMBER_TESTING'] = "DISABLED"
   visit '/logout'
@@ -16,8 +20,4 @@ Then /^I should\s*(not)? be redirected$/ do |redirection|
   else
     request.headers['HTTP_REFERER'].should be_nil
   end
-end
-
-And(/^Enable back test login bypass/) do
-  ENV['CUCUMBER_TESTING'] = "ENABLED"
 end
