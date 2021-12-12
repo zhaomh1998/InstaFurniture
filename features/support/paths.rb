@@ -15,7 +15,8 @@ module NavigationHelpers
 
     when /^the (InstaFurniture )?home\s?page$/ then '/listings'
     when /^the Listings page$/ then '/listings'
-    when /^the Login page/ then '/users'
+    when /^the Login page$/ then '/users'
+    when /^the New page$/ then '/listings/new'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

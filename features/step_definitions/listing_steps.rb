@@ -12,13 +12,12 @@ Given /the following furniture items exist/ do |listings_table|
   end
 end
 
-
 # new feature
-Then /(.*) furniture items should exist/ do | n_seeds |
+Then /(.*) furniture items should exist/ do |n_seeds|
   expect(Listing.count).to eq n_seeds.to_i
 end
 
-Then /(.*) users should exist/ do | n_seeds |
+Then /(.*) users should exist/ do |n_seeds|
   expect(User.count).to eq n_seeds.to_i
 end
 
@@ -54,5 +53,25 @@ end
 Then /I should see all the listings/ do
   # Make sure that all the Listings in the app are visible in the table
   # https://stackoverflow.com/questions/2986250/how-to-assert-on-number-of-html-table-rows-in-ruby-using-capybara-cucumber
-  page.all('table#listings tr').count.should be Listing.count+1
+  page.all('table#listings tr').count.should be Listing.count + 1
+end
+
+When /^I view listing (\d+)$/ do |listing_id|
+  visit "/listings/#{listing_id}"
+end
+
+When /^I create listing "([^"]*)"$/ do |listing_name|
+  Capybara.current_session.driver.submit :post, "/listings", { :listing => { :name => listing_name } }
+end
+
+When /^I edit listing (\d+)$/ do |listing_id|
+  visit "/listings/#{listing_id}/edit"
+end
+
+When /^I submit edit to listing (\d+) renaming to "([^"]*)"$/ do |listing_id, listing_name|
+  Capybara.current_session.driver.submit :put, "/listings/#{listing_id}", { :listing => { :name => listing_name } }
+end
+
+When /^I delete listing (\d+)$/ do |listing_id|
+  Capybara.current_session.driver.submit :delete, "/listings/#{listing_id}", nil
 end

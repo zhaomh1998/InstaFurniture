@@ -6,16 +6,6 @@ Given(/^User logged in$/) do
   visit '/mock_login'
 end
 
-Given(/^User logged in as (\d)$/) do |uid|
+Given(/^User logged in as (\d+)$/) do |uid|
   visit "/mock_login/#{uid}"
-end
-
-# https://gist.github.com/agincourt/138811
-Then /^I should\s*(not)? be redirected$/ do |redirection|
-  if redirection.blank?
-    request.headers['HTTP_REFERER'].should_not be_nil
-    request.headers['HTTP_REFERER'].should_not == request.request_uri
-  else
-    request.headers['HTTP_REFERER'].should be_nil
-  end
 end
