@@ -79,3 +79,7 @@ end
 When /^I click listing "([^"]*)"$/ do |listing_name|
   find("\##{listing_name}").click
 end
+
+Then /(\d+) furniture cards should be displayed/ do |n_items|
+  expect(page.body.scan(/clickable-card/).length).to eq(n_items)
+end

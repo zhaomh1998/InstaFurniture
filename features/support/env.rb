@@ -58,7 +58,7 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-# ---------- Seed test database before cucumber tests, and clean up after ----------
+# ---------- Seed test database before each cucumber scenario, and clean up after ----------
 Before do
   unless @database_seeded
     Rails.application.load_seed
@@ -66,7 +66,7 @@ Before do
   end
 end
 
-at_exit do
+After do
   ActiveRecord::Base.subclasses.each(&:delete_all)
 end
 
