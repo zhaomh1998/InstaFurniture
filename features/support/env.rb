@@ -58,6 +58,7 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# ---------- Seed test database before cucumber tests, and clean up after ----------
 Before do
   unless @database_seeded
     Rails.application.load_seed
@@ -185,4 +186,12 @@ end
 
 After('@MockLogInWithFakeColumbia') do
   OmniAuth.config.test_mode = false
+end
+
+Before('@InvalidLogin') do
+  puts("------------------ [Cucumber] OmniAuth Errors below are EXPECTED. Invalid login test started ------------------")
+end
+
+After('@InvalidLogin') do
+  puts("------------------ [Cucumber] OmniAuth Errors above are EXPECTED. Invalid login test finished ------------------")
 end
