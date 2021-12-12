@@ -68,3 +68,121 @@ end
 at_exit do
   ActiveRecord::Base.subclasses.each(&:delete_all)
 end
+
+# ---------- OmniAuth Mock OAuth ----------
+# https://stackoverflow.com/questions/20848124/testing-omniauth-with-cucumber/20851644
+# These pair with the @ labels above scenarios in login.feature
+Before('@MockLogInWithColumbia') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    :uid => '1000',
+    :credentials => {
+      :token => 'x',
+      :expires_at => 9999999999
+    },
+    :info => {
+      :email => 'test_x@columbia.edu',
+      :first_name => 'Columbia',
+      :last_name => 'User',
+      :image => 'https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg'
+    }
+  })
+end
+
+After('@MockLogInWithColumbia') do
+  OmniAuth.config.test_mode = false
+end
+
+Before('@MockLogInWithTC') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    :uid => '1001',
+    :credentials => {
+      :token => 'x',
+      :expires_at => 9999999999
+    },
+    :info => {
+      :email => 'test_x@tc.columbia.edu',
+      :first_name => 'TC',
+      :last_name => 'User',
+      :image => 'https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg'
+    }
+  })
+end
+
+After('@MockLogInWithTC') do
+  OmniAuth.config.test_mode = false
+end
+
+Before('@MockLogInWithBarnard') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    :uid => '1002',
+    :credentials => {
+      :token => 'x',
+      :expires_at => 9999999999
+    },
+    :info => {
+      :email => 'test_x@barnard.edu',
+      :first_name => 'Barnard',
+      :last_name => 'User',
+      :image => 'https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg'
+    }
+  })
+end
+
+After('@MockLogInWithBarnard') do
+  OmniAuth.config.test_mode = false
+end
+
+Before('@MockLogInWithGmail') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    :uid => '1003',
+    :credentials => {
+      :token => 'x',
+      :expires_at => 9999999999
+    },
+    :info => {
+      :email => 'test_x@gmail.com',
+      :first_name => 'Gmail',
+      :last_name => 'User',
+      :image => 'https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg'
+    }
+  })
+end
+
+After('@MockLogInWithGmail') do
+  OmniAuth.config.test_mode = false
+end
+
+Before('@MockLogInWithFakeColumbia') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://example.com'
+
+  OmniAuth.config.add_mock(:google_oauth2, {
+    :uid => '1004',
+    :credentials => {
+      :token => 'x',
+      :expires_at => 9999999999
+    },
+    :info => {
+      :email => 'test_x@fakecolumbia.edu',
+      :first_name => 'FakeColumbia',
+      :last_name => 'User',
+      :image => 'https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg'
+    }
+  })
+end
+
+After('@MockLogInWithFakeColumbia') do
+  OmniAuth.config.test_mode = false
+end

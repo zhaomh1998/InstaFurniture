@@ -55,3 +55,31 @@ Feature: Login
 
     Given I go to the Listings page
     Then I should be on the Listings page
+
+  @MockLogInWithColumbia
+  Scenario: User successful log in with columbia.edu email
+    Given User logged in with OAuth
+    Then I should be on the InstaFurniture home page
+    And I can see "Columbia User" logged in
+
+  @MockLogInWithTC
+  Scenario: User successful log in with tc.columbia.edu email
+    Given User logged in with OAuth
+    Then I should be on the InstaFurniture home page
+    And I can see "TC User" logged in
+
+  @MockLogInWithBarnard
+  Scenario: User successful log in with barnard.edu email
+    Given User logged in with OAuth
+    Then I should be on the InstaFurniture home page
+    And I can see "Barnard User" logged in
+
+  @MockLogInWithGmail
+  Scenario: User cannot log in with gmail.com email
+    Given User logged in with OAuth
+    Then I should be on the Login page
+
+  @MockLogInWithFakeColumbia
+  Scenario: User cannot log in with fakecolumbia.edu email
+    Given User logged in with OAuth
+    Then I should be on the Login page
