@@ -3,6 +3,8 @@
 At InstaFurniture, we are aiming to make used furniture trading more safe and efficient for Columbia students. Check out
 our demo at [YouTube](https://youtu.be/V18nBwmLKLc)!
 
+Log in with demo account: [https://insta-furniture.herokuapp.com/mock_login](https://insta-furniture.herokuapp.com/mock_login)
+
 ### Name | UNI
 
 ```
